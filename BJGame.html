@@ -1,437 +1,164 @@
 <!DOCTYPE html>
-<html lang="de" class="h-full">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Einstellungen</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+    <title>Guthaben Verwalten</title>
     <style>
-        /* Custom Customizations and Glassmorphism */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        .dark .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        /* Custom range slider styling */
-        input[type=range] {
-            -webkit-appearance: none;
-            accent-color: #3b82f6;
+        .card {
+            background-color: #333;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-            input[type=range]::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                height: 22px;
-                width: 22px;
-                border-radius: 50%;
-                background: #3b82f6;
-                cursor: pointer;
-                box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-                transition: transform 0.1s ease-in-out, background-color 0.2s;
+        .input-group {
+            margin: 20px 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #444;
+            color: #fff;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .btn-save {
+            background-color: #28a745;
+        }
+
+            .btn-save:hover {
+                background-color: #218838;
             }
 
-                input[type=range]::-webkit-slider-thumb:hover {
-                    transform: scale(1.15);
-                }
+        .btn-reset {
+            background-color: #dc3545;
+        }
+
+            .btn-reset:hover {
+                background-color: #c82333;
+            }
+
+        #status {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #28a745;
+            min-height: 20px;
+        }
     </style>
 </head>
-<body class="h-full bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 flex flex-col justify-between" id="app-body">
+<body>
 
-    <!-- Header Component -->
-    <header class="w-full max-w-4xl mx-auto pt-8 px-4">
-        <div class="flex justify-between items-center glass-panel p-4 rounded-2xl shadow-lg">
-            <div class="flex items-center space-x-3">
-                <div class="bg-blue-500 text-white p-2.5 rounded-xl shadow-md shadow-blue-500/30">
-                    <i class="fa-solid fa-sliders text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold tracking-tight">System-Einstellungen</h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Verwalte deine Präferenzen</p>
-                </div>
-            </div>
-            <!-- Live Status Badge -->
-            <div id="status-badge" class="hidden md:flex items-center space-x-2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-medium">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Gespeichert</span>
-            </div>
-        </div>
-    </header>
+    <div class="card">
+        <h1>Guthaben-Manager</h1>
 
-    <!-- Main Content Container -->
-    <main class="w-full max-w-4xl mx-auto p-4 flex-grow my-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <p>Aktueller Stand: <strong><span id="current-balance">100</span> Münzen</strong></p>
 
-            <!-- Card 1: Lautstärke & Audio -->
-            <div class="glass-panel p-6 rounded-3xl shadow-lg space-y-6 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg">
-                            <i class="fa-solid fa-volume-high text-lg"></i>
-                        </div>
-                        <h2 class="text-lg font-semibold">Audio & Sound</h2>
-                    </div>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Passe die Lautstärke der Systemtöne an.</p>
-
-                    <!-- Lautstärkeregler -->
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center text-sm font-medium">
-                            <label for="volume-range" class="flex items-center space-x-2">
-                                <span>Lautstärke</span>
-                            </label>
-                            <span id="volume-value" class="font-bold text-blue-500 bg-blue-500/10 px-2.5 py-0.5 rounded-md">80%</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <button id="mute-btn" class="p-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl transition-all duration-200 focus:outline-none" title="Stummschalten">
-                                <i id="mute-icon" class="fa-solid fa-volume-high text-slate-700 dark:text-slate-200"></i>
-                            </button>
-                            <input type="range" id="volume-range" min="0" max="100" value="80" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Test Sound Button -->
-                <div class="pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
-                    <button id="test-sound-btn" class="w-full py-2.5 px-4 bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-play text-xs"></i>
-                        <span>Testton abspielen</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Card 2: Display & Helligkeit -->
-            <div class="glass-panel p-6 rounded-3xl shadow-lg space-y-6 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="bg-amber-500/10 text-amber-500 p-2 rounded-lg">
-                            <i class="fa-solid fa-sun text-lg"></i>
-                        </div>
-                        <h2 class="text-lg font-semibold">Anzeige & Helligkeit</h2>
-                    </div>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Regle die Bildschirmhelligkeit dynamisch.</p>
-
-                    <!-- Helligkeitsregler -->
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center text-sm font-medium">
-                            <label for="brightness-range" class="flex items-center space-x-2">
-                                <span>Helligkeit</span>
-                            </label>
-                            <span id="brightness-value" class="font-bold text-amber-500 bg-amber-500/10 px-2.5 py-0.5 rounded-md">100%</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <i class="fa-regular fa-sun text-slate-400 text-sm"></i>
-                            <input type="range" id="brightness-range" min="20" max="100" value="100" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                            <i class="fa-solid fa-sun text-amber-500 text-base"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Brightness Preview Box -->
-                <div class="p-3 bg-slate-200/40 dark:bg-slate-800/40 rounded-xl border border-slate-300/30 dark:border-slate-700/30 flex items-center justify-between text-xs text-slate-500">
-                    <span>Echtzeit-Vorschau aktiv</span>
-                    <i class="fa-solid fa-circle-check text-emerald-500"></i>
-                </div>
-            </div>
-
-            <!-- Card 3: System-Schalter (Toggles) -->
-            <div class="glass-panel p-6 rounded-3xl shadow-lg space-y-6 md:col-span-2">
-                <div class="flex items-center space-x-3 mb-2">
-                    <div class="bg-purple-500/10 text-purple-500 p-2 rounded-lg">
-                        <i class="fa-solid fa-toggle-on text-lg"></i>
-                    </div>
-                    <h2 class="text-lg font-semibold">Präferenzen & Benachrichtigungen</h2>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Toggle 1: Dark Mode -->
-                    <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60">
-                        <div class="space-y-0.5">
-                            <span class="text-sm font-medium">Dunkelmodus (Dark Theme)</span>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Dunkles Erscheinungsbild aktivieren</p>
-                        </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="darkmode-toggle" class="sr-only peer">
-                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-blue-600"></div>
-                        </label>
-                    </div>
-
-                    <!-- Toggle 2: Notifications -->
-                    <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60">
-                        <div class="space-y-0.5">
-                            <span class="text-sm font-medium">Benachrichtigungen</span>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Pop-up Hinweise zulassen</p>
-                        </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="notifications-toggle" checked class="sr-only peer">
-                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-blue-600"></div>
-                        </label>
-                    </div>
-                </div>
-            </div>
+        <div class="input-group">
+            <label for="new-balance">Neuen Wert festlegen:</label>
+            <input type="number" id="new-balance" placeholder="z. B. 500" min="0">
         </div>
 
-        <!-- Action Buttons -->
-        <div class="mt-8 flex flex-col sm:flex-row items-center justify-end space-y-3 sm:space-y-0 sm:space-x-4">
-            <button id="reset-btn" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 font-medium text-sm transition-all duration-200 flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-rotate-left"></i>
-                <span>Zurücksetzen</span>
-            </button>
-
-            <button id="save-btn" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-medium text-sm shadow-lg shadow-blue-500/30 transition-all duration-200 flex items-center justify-center space-x-2">
-                <i id="save-icon" class="fa-solid fa-floppy-disk"></i>
-                <span id="save-text">Einstellungen speichern</span>
-            </button>
+        <div class="btn-group">
+            <button class="btn-save" id="save-btn">Speichern</button>
+            <button class="btn-reset" id="reset-btn">Reset (100)</button>
         </div>
-    </main>
 
-    <!-- Custom Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50">
-        <div class="glass-panel bg-slate-900/90 text-white dark:bg-slate-100/90 dark:text-slate-900 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 border border-slate-700/50">
-            <div id="toast-icon" class="text-emerald-400 dark:text-emerald-600">
-                <i class="fa-solid fa-circle-check text-lg"></i>
-            </div>
-            <span id="toast-message" class="text-sm font-medium">Einstellungen erfolgreich gespeichert!</span>
-        </div>
+        <p id="status"></p>
     </div>
 
-    <!-- Footer -->
-    <footer class="w-full max-w-4xl mx-auto p-4 text-center text-xs text-slate-400">
-        &copy; 2026 BlackJack
-    </footer>
-
     <script>
-        // DOM Elements
-        const volumeRange = document.getElementById('volume-range');
-        const volumeValue = document.getElementById('volume-value');
-        const muteBtn = document.getElementById('mute-btn');
-        const muteIcon = document.getElementById('mute-icon');
-        const testSoundBtn = document.getElementById('test-sound-btn');
+                // DOM-Elemente
+                const currentBalanceDisplay = document.getElementById('current-balance');
+                const newBalanceInput = document.getElementById('new-balance');
+                const saveBtn = document.getElementById('save-btn');
+                const resetBtn = document.getElementById('reset-btn');
+                const statusDisplay = document.getElementById('status');
 
-        const brightnessRange = document.getElementById('brightness-range');
-        const brightnessValue = document.getElementById('brightness-value');
-        const appBody = document.getElementById('app-body');
-
-        const darkmodeToggle = document.getElementById('darkmode-toggle');
-        const notificationsToggle = document.getElementById('notifications-toggle');
-
-        const saveBtn = document.getElementById('save-btn');
-        const saveIcon = document.getElementById('save-icon');
-        const saveText = document.getElementById('save-text');
-        const resetBtn = document.getElementById('reset-btn');
-
-        const toast = document.getElementById('toast');
-        const toastMessage = document.getElementById('toast-message');
-
-        let previousVolume = 80;
-        let audioCtx = null;
-
-        // Initialize Settings from LocalStorage or Defaults
-        function loadSettings() {
-            const savedSettings = JSON.parse(localStorage.getItem('app_settings'));
-
-            if (savedSettings) {
-                // Apply Volume
-                volumeRange.value = savedSettings.volume;
-                updateVolumeUI(savedSettings.volume);
-
-                // Apply Brightness
-                brightnessRange.value = savedSettings.brightness;
-                updateBrightnessUI(savedSettings.brightness);
-
-                // Apply Dark Mode
-                darkmodeToggle.checked = savedSettings.darkMode;
-                updateDarkMode(savedSettings.darkMode);
-
-                // Apply Notifications
-                notificationsToggle.checked = savedSettings.notifications;
-            } else {
-                // Check System Dark Mode Preference
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    darkmodeToggle.checked = true;
-                    updateDarkMode(true);
+                // Funktion: Liest 'globalBalance' aus dem localStorage und zeigt ihn an
+                function loadBalance() {
+                    let balance = parseInt(localStorage.getItem('globalBalance'));
+                    if (isNaN(balance)) {
+                        balance = 100; // Standardwert
+                    }
+                    currentBalanceDisplay.textContent = balance;
                 }
-            }
-        }
 
-        // --- Volume Handlers ---
-        function updateVolumeUI(val) {
-            volumeValue.textContent = `${val}%`;
-            if (val == 0) {
-                muteIcon.className = 'fa-solid fa-volume-xmark text-red-500';
-            } else if (val < 50) {
-                muteIcon.className = 'fa-solid fa-volume-low text-slate-700 dark:text-slate-200';
-            } else {
-                muteIcon.className = 'fa-solid fa-volume-high text-slate-700 dark:text-slate-200';
-            }
-        }
-
-        volumeRange.addEventListener('input', (e) => {
-            updateVolumeUI(e.target.value);
-        });
-
-        muteBtn.addEventListener('click', () => {
-            if (volumeRange.value > 0) {
-                previousVolume = volumeRange.value;
-                volumeRange.value = 0;
-            } else {
-                volumeRange.value = previousVolume || 80;
-            }
-            updateVolumeUI(volumeRange.value);
-        });
-
-        // Synthetic Audio Beep Generator using Web Audio API
-        testSoundBtn.addEventListener('click', () => {
-            if (volumeRange.value == 0) {
-                showToast("Ton ist stummgeschaltet!", "error");
-                return;
-            }
-
-            try {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                // Funktion: Speichert einen neuen Wert in 'globalBalance'
+                function setBalance(newValue) {
+                    localStorage.setItem('globalBalance', newValue);
+                    loadBalance();
+                    showStatus(`Guthaben auf ${newValue} gesetzt!`);
                 }
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
 
-                // Scale gain based on volume slider (0.0 to 1.0)
-                const gainVal = (volumeRange.value / 100) * 0.3;
-                gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+                // Statusmeldung für den Benutzer
+                function showStatus(msg) {
+                    statusDisplay.textContent = msg;
+                    setTimeout(() => {
+                        statusDisplay.textContent = '';
+                    }, 3000);
+                }
 
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5 pitch
+                // Event-Listener: Speichern-Button
+                saveBtn.addEventListener('click', () => {
+                    const inputValue = parseInt(newBalanceInput.value);
+                    if (!isNaN(inputValue) && inputValue >= 0) {
+                        setBalance(inputValue);
+                        newBalanceInput.value = '';
+                    } else {
+                        showStatus("Bitte eine gültige Zahl eingeben!");
+                    }
+                });
 
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
+                // Event-Listener: Reset-Button
+                resetBtn.addEventListener('click', () => {
+                    setBalance(100);
+                });
 
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.2);
+                // Automatische Aktualisierung, falls der Wert in einem anderen Tab geändert wird
+                window.addEventListener('storage', (event) => {
+                    if (event.key === 'globalBalance') {
+                        loadBalance();
+                    }
+                });
 
-                // Button Feedback Effect
-                testSoundBtn.classList.add('scale-95');
-                setTimeout(() => testSoundBtn.classList.remove('scale-95'), 150);
-
-            } catch (err) {
-                console.log("Audio Kontext konnte nicht gestartet werden.", err);
-            }
-        });
-
-        // --- Brightness Handlers ---
-        function updateBrightnessUI(val) {
-            brightnessValue.textContent = `${val}%`;
-            // Dynamically adjust body filter brightness
-            appBody.style.filter = `brightness(${val}%)`;
-        }
-
-        brightnessRange.addEventListener('input', (e) => {
-            updateBrightnessUI(e.target.value);
-        });
-
-        // --- Dark Mode Handlers ---
-        function updateDarkMode(isDark) {
-            if (isDark) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
-
-        darkmodeToggle.addEventListener('change', (e) => {
-            updateDarkMode(e.target.checked);
-        });
-
-        // --- Save Settings with Animated Feedback ---
-        saveBtn.addEventListener('click', () => {
-            // Button loading animation
-            saveBtn.disabled = true;
-            saveIcon.className = 'fa-solid fa-spinner animate-spin';
-            saveText.textContent = 'Wird gespeichert...';
-
-            // Prepare settings payload
-            const settings = {
-                volume: volumeRange.value,
-                brightness: brightnessRange.value,
-                darkMode: darkmodeToggle.checked,
-                notifications: notificationsToggle.checked
-            };
-
-            // Simulate server network latency
-            setTimeout(() => {
-                // Save to LocalStorage
-                localStorage.setItem('app_settings', JSON.stringify(settings));
-
-                // Revert button state
-                saveIcon.className = 'fa-solid fa-check';
-                saveText.textContent = 'Gespeichert!';
-                saveBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                saveBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
-
-                showToast('Einstellungen erfolgreich gespeichert!');
-
-                setTimeout(() => {
-                    saveIcon.className = 'fa-solid fa-floppy-disk';
-                    saveText.textContent = 'Einstellungen speichern';
-                    saveBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
-                    saveBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-                    saveBtn.disabled = false;
-                }, 1800);
-
-            }, 600);
-        });
-
-        // --- Reset Settings ---
-        resetBtn.addEventListener('click', () => {
-            volumeRange.value = 80;
-            updateVolumeUI(80);
-
-            brightnessRange.value = 100;
-            updateBrightnessUI(100);
-
-            darkmodeToggle.checked = false;
-            updateDarkMode(false);
-
-            notificationsToggle.checked = true;
-
-            localStorage.removeItem('app_settings');
-            showToast('Einstellungen auf Standard zurückgesetzt.', 'info');
-        });
-
-        // Toast Notification Function
-        function showToast(message, type = 'success') {
-            toastMessage.textContent = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // Run on load
-        window.onload = function() {
-            loadSettings();
-        };
+                // Beim ersten Laden den aktuellen Wert anzeigen
+                loadBalance();
     </script>
+
 </body>
 </html>
