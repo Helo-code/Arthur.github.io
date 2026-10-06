@@ -12,38 +12,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <!-- Canvas Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            200: '#fff3b0',
-                            300: '#ffe885',
-                            400: '#ffd700',
-                            500: '#d4af37',
-                            600: '#aa8c2c',
-                            700: '#80681f',
-                        },
-                        casino: {
-                            bg: '#07070b',
-                            card: '#12131f',
-                            accent: '#1f2035',
-                            purple: '#2b1055',
-                            bonusBg: '#3d0303',
-                            neonPink: '#ff2a6d',
-                            neonGold: '#ffcc00',
+                tailwind.config = {
+                    darkMode: 'class',
+                    theme: {
+                        extend: {
+                            colors: {
+                                gold: {
+                                    200: '#fff3b0',
+                                    300: '#ffe885',
+                                    400: '#ffd700',
+                                    500: '#d4af37',
+                                    600: '#aa8c2c',
+                                    700: '#80681f',
+                                },
+                                casino: {
+                                    bg: '#07070b',
+                                    card: '#12131f',
+                                    accent: '#1f2035',
+                                    purple: '#2b1055',
+                                    bonusBg: '#3d0303',
+                                    neonPink: '#ff2a6d',
+                                    neonGold: '#ffcc00',
+                                }
+                            },
+                            fontFamily: {
+                                cinzel: ['Cinzel', 'serif'],
+                                outfit: ['Outfit', 'sans-serif'],
+                            }
                         }
-                    },
-                    fontFamily: {
-                        cinzel: ['Cinzel', 'serif'],
-                        outfit: ['Outfit', 'sans-serif'],
                     }
                 }
-            }
-        }
     </script>
     <style>
         body {
@@ -53,10 +52,10 @@
             transition: background 0.8s ease;
         }
 
-        body.freespin-mode {
-            background-color: #1a0202;
-            background-image: radial-gradient(circle at 50% 20%, rgba(220, 38, 38, 0.3) 0%, transparent 60%), radial-gradient(circle at 50% 80%, rgba(234, 88, 12, 0.2) 0%, transparent 50%);
-        }
+            body.freespin-mode {
+                background-color: #1a0202;
+                background-image: radial-gradient(circle at 50% 20%, rgba(220, 38, 38, 0.3) 0%, transparent 60%), radial-gradient(circle at 50% 80%, rgba(234, 88, 12, 0.2) 0%, transparent 50%);
+            }
 
         .gold-gradient-text {
             background: linear-gradient(135deg, #FFF5C0 0%, #FFD700 50%, #B38728 100%);
@@ -71,22 +70,22 @@
             transition: all 0.15s ease-in-out;
         }
 
-        .gold-btn:hover:not(:disabled) {
-            background: linear-gradient(180deg, #ffe033 0%, #d4a72c 100%);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            transform: translateY(-2px);
-        }
+            .gold-btn:hover:not(:disabled) {
+                background: linear-gradient(180deg, #ffe033 0%, #d4a72c 100%);
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+                transform: translateY(-2px);
+            }
 
-        .gold-btn:active:not(:disabled) {
-            transform: translateY(1px);
-            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-        }
+            .gold-btn:active:not(:disabled) {
+                transform: translateY(1px);
+                box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+            }
 
-        .gold-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            filter: grayscale(80%);
-        }
+            .gold-btn:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+                filter: grayscale(80%);
+            }
 
         .reel-window {
             height: 330px;
@@ -135,6 +134,7 @@
                 transform: scale(0.95);
                 filter: drop-shadow(0 0 5px #ffd700);
             }
+
             100% {
                 transform: scale(1.1);
                 filter: drop-shadow(0 0 18px #ffd700);
@@ -212,24 +212,27 @@
 
             <!-- Top Dashboard Display -->
             <div class="grid grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4 mb-4 sm:mb-6 text-center">
-                <div class="bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-gold-500/20 shadow-inner">
-                    <span class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider block">Guthaben</span>
-                    <span id="balanceDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-gold-400">$1,000</span>
-                </div>
+                <!-- Guthaben-Anzeige verlinkt als Button zur Bankroll-Seite -->
+                <a href="BJGame.html" class="bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-gold-500/40 hover:border-gold-400 hover:bg-gold-500/10 transition shadow-inner flex flex-col justify-center items-center group cursor-pointer">
+                    <span class="text-[10px] sm:text-xs text-gold-400 font-bold uppercase tracking-wider flex items-center gap-1 group-hover:underline">
+                        <i class="fa-solid fa-wallet text-amber-400"></i> Guthaben
+                    </span>
+                    <span id="balanceDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-gold-400">0,00 €</span>
+                </a>
 
-                <div class="bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-gold-500/20 shadow-inner relative overflow-hidden">
+                <div class="bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-gold-500/20 shadow-inner relative overflow-hidden flex flex-col justify-center items-center">
                     <span class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider block">Gewinn</span>
-                    <span id="winDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-emerald-400">$0</span>
+                    <span id="winDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-emerald-400">0,00 €</span>
                 </div>
 
-                <div class="bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-gold-500/20 shadow-inner">
+                <div class="bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-gold-500/20 shadow-inner flex flex-col justify-center items-center">
                     <span class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider block">Gesamteinsatz</span>
-                    <span id="betDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-white">$10</span>
+                    <span id="betDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-white">10 €</span>
                 </div>
 
-                <div class="col-span-3 md:col-span-1 bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-amber-500/30 shadow-inner">
+                <div class="col-span-3 md:col-span-1 bg-casino-bg/90 p-2 sm:p-3 rounded-2xl border border-amber-500/30 shadow-inner flex flex-col justify-center items-center">
                     <span class="text-[10px] sm:text-xs text-amber-400 font-bold uppercase tracking-wider block">Freispiel Gewinn</span>
-                    <span id="fsTotalWinDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-amber-300">$0</span>
+                    <span id="fsTotalWinDisplay" class="font-cinzel text-base sm:text-2xl font-bold text-amber-300">0,00 €</span>
                 </div>
             </div>
 
@@ -391,7 +394,7 @@
             <div class="text-6xl mb-3">👑</div>
             <h2 class="font-cinzel font-black text-2xl sm:text-3xl gold-gradient-text tracking-wider mb-2">FREISPIEL-GEWINN</h2>
             <p class="text-sm text-gray-300 mb-2">Herzlichen Glückwunsch! Du hast gewonnen:</p>
-            <div id="fsEndTotalWinText" class="font-cinzel text-4xl sm:text-5xl font-black text-emerald-400 my-4">$0</div>
+            <div id="fsEndTotalWinText" class="font-cinzel text-4xl sm:text-5xl font-black text-emerald-400 my-4">0,00 €</div>
             <button id="closeFreeSpinsEndBtn" class="gold-btn px-8 py-3 rounded-2xl text-black font-cinzel font-black text-lg tracking-widest uppercase mt-2">
                 GEWINN EINKASSIEREN
             </button>
@@ -400,458 +403,466 @@
 
     <!-- Footer -->
     <footer class="w-full text-center py-2 text-[11px] text-gray-500 border-t border-gold-500/10">
-        <p>© 2026 Royal Fortune Slots. Nur zur Unterhaltung. Kein echtes Geld im Spiel.</p>
+        <p>© 2026 BABA SLOTS</p>
     </footer>
 
     <!-- JavaScript Game Logic -->
     <script>
-        class SoundEngine {
-            constructor() {
-                this.ctx = null;
-                this.muted = false;
-            }
-
-            init() {
-                if (!this.ctx) {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    this.ctx = new AudioContext();
+                function formatCurrency(val) {
+                    return parseFloat(val || 0).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
                 }
-                if (this.ctx.state === 'suspended') {
-                    this.ctx.resume();
-                }
-            }
 
-            toggleMute() {
-                this.muted = !this.muted;
-                return this.muted;
-            }
+                class SoundEngine {
+                    constructor() {
+                        this.ctx = null;
+                        this.muted = false;
+                    }
 
-            playTone(freq, duration, type = 'sine', gainVal = 0.1) {
-                if (this.muted || !this.ctx) return;
-                try {
-                    const osc = this.ctx.createOscillator();
-                    const gain = this.ctx.createGain();
-                    osc.type = type;
-                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-                    gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
-                    osc.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc.start();
-                    osc.stop(this.ctx.currentTime + duration);
-                } catch(e) { console.error(e); }
-            }
+                    init() {
+                        if (!this.ctx) {
+                            const AudioContext = window.AudioContext || window.webkitAudioContext;
+                            this.ctx = new AudioContext();
+                        }
+                        if (this.ctx.state === 'suspended') {
+                            this.ctx.resume();
+                        }
+                    }
 
-            playReelStop() { this.playTone(110, 0.08, 'triangle', 0.12); }
-            playScatterFanfare() {
-                if (this.muted || !this.ctx) return;
-                const notes = [440, 554.37, 659.25, 880];
-                notes.forEach((freq, idx) => {
-                    setTimeout(() => this.playTone(freq, 0.2, 'sawtooth', 0.12), idx * 80);
-                });
-            }
-            playWin() {
-                if (this.muted || !this.ctx) return;
-                const notes = [523.25, 659.25, 783.99, 1046.50];
-                notes.forEach((freq, index) => {
-                    setTimeout(() => this.playTone(freq, 0.2, 'sine', 0.12), index * 90);
-                });
-            }
-        }
+                    toggleMute() {
+                        this.muted = !this.muted;
+                        return this.muted;
+                    }
 
-        const SYMBOLS = [
-            { id: '777', char: '🎰', name: 'Sieben', mults: [0, 0, 10, 30, 100] },
-            { id: 'crown', char: '👑', name: 'Krone', mults: [0, 0, 5, 15, 50] },
-            { id: 'diamond', char: '💎', name: 'Diamant', mults: [0, 0, 4, 10, 30] },
-            { id: 'bell', char: '🔔', name: 'Glocke', mults: [0, 0, 3, 8, 20] },
-            { id: 'melon', char: '🍉', name: 'Melone', mults: [0, 0, 2, 5, 12] },
-            { id: 'lemon', char: '🍋', name: 'Zitrone', mults: [0, 0, 1, 3, 8] },
-            { id: 'cherry', char: '🍒', name: 'Kirsche', mults: [0, 0, 1, 2, 5] },
-            { id: 'wild', char: '🃏', name: 'Wild', isWild: true },
-            { id: 'scatter', char: '🔥', name: 'Scatter', isScatter: true }
-        ];
+                    playTone(freq, duration, type = 'sine', gainVal = 0.1) {
+                        if (this.muted || !this.ctx) return;
+                        try {
+                            const osc = this.ctx.createOscillator();
+                            const gain = this.ctx.createGain();
+                            osc.type = type;
+                            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+                            gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+                            osc.connect(gain);
+                            gain.connect(this.ctx.destination);
+                            osc.start();
+                            osc.stop(this.ctx.currentTime + duration);
+                        } catch(e) { console.error(e); }
+                    }
 
-        const PAYLINES = [
-            [1, 1, 1, 1, 1],
-            [0, 0, 0, 0, 0],
-            [2, 2, 2, 2, 2],
-            [0, 1, 2, 1, 0],
-            [2, 1, 0, 1, 2],
-            [0, 0, 1, 2, 2],
-            [2, 2, 1, 0, 0],
-        ];
-
-        const STRIP_LENGTH = 30;
-
-        class SlotEngine {
-            constructor() {
-                this.balance = 1000;
-                this.bet = 10;
-                this.minBet = 5;
-                this.maxBet = 100;
-
-                this.isSpinning = false;
-                this.autoSpin = false;
-                this.autoSpinTimer = null;
-
-                this.inFreeSpins = false;
-                this.freeSpinsLeft = 0;
-                this.freeSpinsTotalWin = 0;
-                this.freeSpinMultiplier = 2;
-
-                this.sounds = new SoundEngine();
-                this.reelStrips = [[], [], [], [], []];
-                this.finalGrid = [];
-
-                this.initDOM();
-                this.bindEvents();
-                this.generateStrips();
-                this.updateUI();
-            }
-
-            initDOM() {
-                this.balanceEl = document.getElementById('balanceDisplay');
-                this.betEl = document.getElementById('betDisplay');
-                this.winEl = document.getElementById('winDisplay');
-                this.fsTotalWinEl = document.getElementById('fsTotalWinDisplay');
-
-                this.spinBtn = document.getElementById('spinBtn');
-                this.spinBtnText = document.getElementById('spinBtnText');
-                this.autoSpinBtn = document.getElementById('autoSpinBtn');
-                this.autoSpinText = document.getElementById('autoSpinText');
-
-                this.betIncBtn = document.getElementById('betIncBtn');
-                this.betDecBtn = document.getElementById('betDecBtn');
-                this.maxBetBtn = document.getElementById('maxBetBtn');
-
-                this.soundToggleBtn = document.getElementById('soundToggleBtn');
-                this.soundIcon = document.getElementById('soundIcon');
-                this.statusBanner = document.getElementById('statusBanner');
-
-                this.paytableModal = document.getElementById('paytableModal');
-                this.openPaytableBtn = document.getElementById('openPaytableBtn');
-                this.closePaytableBtn = document.getElementById('closePaytableBtn');
-
-                this.freeSpinTriggerModal = document.getElementById('freeSpinTriggerModal');
-                this.startFreeSpinsBtn = document.getElementById('startFreeSpinsBtn');
-                this.freeSpinEndModal = document.getElementById('freeSpinEndModal');
-                this.closeFreeSpinsEndBtn = document.getElementById('closeFreeSpinsEndBtn');
-                this.freeSpinHeader = document.getElementById('freeSpinHeader');
-                this.fsCountBadge = document.getElementById('fsCountBadge');
-                this.fsEndTotalWinText = document.getElementById('fsEndTotalWinText');
-            }
-
-            bindEvents() {
-                this.spinBtn.addEventListener('click', () => {
-                    this.sounds.init();
-                    this.startSpin();
-                });
-
-                this.autoSpinBtn.addEventListener('click', () => {
-                    this.sounds.init();
-                    this.toggleAutoSpin();
-                });
-
-                this.betIncBtn.addEventListener('click', () => this.adjustBet(5));
-                this.betDecBtn.addEventListener('click', () => this.adjustBet(-5));
-                this.maxBetBtn.addEventListener('click', () => {
-                    this.bet = this.maxBet;
-                    this.updateUI();
-                });
-
-                this.soundToggleBtn.addEventListener('click', () => {
-                    const isMuted = this.sounds.toggleMute();
-                    this.soundIcon.className = isMuted ? "fa-solid fa-volume-xmark text-red-400" : "fa-solid fa-volume-high text-sm";
-                });
-
-                this.openPaytableBtn.addEventListener('click', () => this.paytableModal.classList.remove('hidden'));
-                this.closePaytableBtn.addEventListener('click', () => this.paytableModal.classList.add('hidden'));
-
-                this.startFreeSpinsBtn.addEventListener('click', () => {
-                    this.freeSpinTriggerModal.classList.add('hidden');
-                    this.runFreeSpin();
-                });
-
-                this.closeFreeSpinsEndBtn.addEventListener('click', () => {
-                    this.freeSpinEndModal.classList.add('hidden');
-                    document.body.classList.remove('freespin-mode');
-                    this.freeSpinHeader.classList.add('hidden');
-                    this.updateUI();
-                });
-            }
-
-            getRandomSymbol() {
-                // Ausbalancierte Wahrscheinlichkeiten inkl. Scatter 🔥
-                const rand = Math.random();
-                if (rand < 0.08) return SYMBOLS.find(s => s.id === 'scatter'); // ~8% Scatter Chance
-                if (rand < 0.13) return SYMBOLS.find(s => s.id === 'wild');
-                if (rand < 0.20) return SYMBOLS.find(s => s.id === '777');
-                if (rand < 0.30) return SYMBOLS.find(s => s.id === 'crown');
-                if (rand < 0.42) return SYMBOLS.find(s => s.id === 'diamond');
-                if (rand < 0.56) return SYMBOLS.find(s => s.id === 'bell');
-                if (rand < 0.70) return SYMBOLS.find(s => s.id === 'melon');
-                if (rand < 0.85) return SYMBOLS.find(s => s.id === 'lemon');
-                return SYMBOLS.find(s => s.id === 'cherry');
-            }
-
-            generateStrips() {
-                for (let r = 0; r < 5; r++) {
-                    const reelEl = document.getElementById(`reel${r + 1}`);
-                    reelEl.innerHTML = '';
-                    this.reelStrips[r] = [];
-
-                    for (let i = 0; i < STRIP_LENGTH; i++) {
-                        const sym = this.getRandomSymbol();
-                        this.reelStrips[r].push(sym);
-
-                        const cell = document.createElement('div');
-                        cell.className = 'symbol-cell';
-                        cell.innerHTML = `<span>${sym.char}</span>`;
-                        reelEl.appendChild(cell);
+                    playReelStop() { this.playTone(110, 0.08, 'triangle', 0.12); }
+                    playScatterFanfare() {
+                        if (this.muted || !this.ctx) return;
+                        const notes = [440, 554.37, 659.25, 880];
+                        notes.forEach((freq, idx) => {
+                            setTimeout(() => this.playTone(freq, 0.2, 'sawtooth', 0.12), idx * 80);
+                        });
+                    }
+                    playWin() {
+                        if (this.muted || !this.ctx) return;
+                        const notes = [523.25, 659.25, 783.99, 1046.50];
+                        notes.forEach((freq, index) => {
+                            setTimeout(() => this.playTone(freq, 0.2, 'sine', 0.12), index * 90);
+                        });
                     }
                 }
-            }
 
-            adjustBet(val) {
-                if (this.isSpinning || this.inFreeSpins) return;
-                this.bet = Math.max(this.minBet, Math.min(this.maxBet, this.bet + val));
-                this.updateUI();
-            }
+                const SYMBOLS = [
+                    { id: '777', char: '🎰', name: 'Sieben', mults: [0, 0, 10, 30, 100] },
+                    { id: 'crown', char: '👑', name: 'Krone', mults: [0, 0, 5, 15, 50] },
+                    { id: 'diamond', char: '💎', name: 'Diamant', mults: [0, 0, 4, 10, 30] },
+                    { id: 'bell', char: '🔔', name: 'Glocke', mults: [0, 0, 3, 8, 20] },
+                    { id: 'melon', char: '🍉', name: 'Melone', mults: [0, 0, 2, 5, 12] },
+                    { id: 'lemon', char: '🍋', name: 'Zitrone', mults: [0, 0, 1, 3, 8] },
+                    { id: 'cherry', char: '🍒', name: 'Kirsche', mults: [0, 0, 1, 2, 5] },
+                    { id: 'wild', char: '🃏', name: 'Wild', isWild: true },
+                    { id: 'scatter', char: '🔥', name: 'Scatter', isScatter: true }
+                ];
 
-            toggleAutoSpin() {
-                if (this.inFreeSpins) return;
-                this.autoSpin = !this.autoSpin;
-                if (this.autoSpin) {
-                    this.autoSpinBtn.classList.add('bg-gold-500/30', 'border-gold-400');
-                    this.autoSpinText.innerText = 'Stop';
-                    if (!this.isSpinning) this.startSpin();
-                } else {
-                    this.autoSpinBtn.classList.remove('bg-gold-500/30', 'border-gold-400');
-                    this.autoSpinText.innerText = 'Auto';
-                }
-            }
+                const PAYLINES = [
+                    [1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0],
+                    [2, 2, 2, 2, 2],
+                    [0, 1, 2, 1, 0],
+                    [2, 1, 0, 1, 2],
+                    [0, 0, 1, 2, 2],
+                    [2, 2, 1, 0, 0],
+                ];
 
-            startSpin() {
-                if (this.isSpinning) return;
+                const STRIP_LENGTH = 30;
 
-                if (!this.inFreeSpins) {
-                    if (this.balance < this.bet) {
-                        alert("Nicht genügend Guthaben!");
+                class SlotEngine {
+                    constructor() {
+                        // Liest die globale Bankroll synchron aus localStorage
+                        const savedBankroll = localStorage.getItem('bankroll');
+                        this.balance = savedBankroll !== null ? parseFloat(savedBankroll) : 1000;
+
+                        this.bet = 10;
+                        this.minBet = 5;
+                        this.maxBet = 100;
+
+                        this.isSpinning = false;
                         this.autoSpin = false;
-                        this.updateUI();
-                        return;
-                    }
-                    this.balance -= this.bet;
-                }
 
-                this.isSpinning = true;
-                this.clearHighlights();
-                this.winEl.innerText = '$0';
-                this.updateUI();
-
-                // Reels drehen
-                let completedReels = 0;
-                this.finalGrid = [[], [], [], [], []];
-
-                for (let r = 0; r < 5; r++) {
-                    const reelEl = document.getElementById(`reel${r + 1}`);
-                    
-                    // Neue Symbole ans Ende hängen
-                    for(let i = 0; i < 3; i++) {
-                        const sym = this.getRandomSymbol();
-                        this.reelStrips[r].push(sym);
-                        const cell = document.createElement('div');
-                        cell.className = 'symbol-cell';
-                        cell.innerHTML = `<span>${sym.char}</span>`;
-                        reelEl.appendChild(cell);
-                    }
-
-                    const totalCells = reelEl.children.length;
-                    this.finalGrid[r] = [
-                        this.reelStrips[r][totalCells - 3],
-                        this.reelStrips[r][totalCells - 2],
-                        this.reelStrips[r][totalCells - 1]
-                    ];
-
-                    const cellHeight = window.innerWidth <= 640 ? 75 : 110;
-                    const targetY = -((totalCells - 3) * cellHeight);
-
-                    setTimeout(() => {
-                        reelEl.style.transition = 'transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1.0)';
-                        reelEl.style.transform = `translateY(${targetY}px)`;
-
-                        setTimeout(() => {
-                            this.sounds.playReelStop();
-                            completedReels++;
-                            if (completedReels === 5) {
-                                this.evaluateSpin();
-                            }
-                        }, 1200 + (r * 150));
-                    }, 50);
-                }
-            }
-
-            evaluateSpin() {
-                this.isSpinning = false;
-                let spinWin = 0;
-
-                // 1. SCATTER ZÄHLEN (Auf dem gesamten 5x3 Feld)
-                let scatterCount = 0;
-                let scatterPositions = [];
-
-                for (let r = 0; r < 5; r++) {
-                    for (let row = 0; row < 3; row++) {
-                        if (this.finalGrid[r][row] && this.finalGrid[r][row].id === 'scatter') {
-                            scatterCount++;
-                            scatterPositions.push({ r, row });
-                        }
-                    }
-                }
-
-                // 2. GEWINNLINIEN AUSWERTEN
-                PAYLINES.forEach((line) => {
-                    const firstSym = this.finalGrid[0][line[0]];
-                    if (!firstSym || firstSym.isScatter) return;
-
-                    let matchSym = firstSym.isWild ? null : firstSym;
-                    let matchCount = 0;
-
-                    for (let r = 0; r < 5; r++) {
-                        const currentSym = this.finalGrid[r][line[r]];
-                        if (!currentSym) break;
-
-                        if (currentSym.isScatter) break;
-
-                        if (currentSym.isWild) {
-                            matchCount++;
-                        } else if (!matchSym) {
-                            matchSym = currentSym;
-                            matchCount++;
-                        } else if (currentSym.id === matchSym.id) {
-                            matchCount++;
-                        } else {
-                            break;
-                        }
-                    }
-
-                    if (matchSym && matchCount >= 3) {
-                        const basePay = matchSym.mults[matchCount - 1] || 0;
-                        spinWin += basePay * this.bet;
-                    }
-                });
-
-                // Multiplikator in Freispielen anwenden
-                if (this.inFreeSpins) {
-                    spinWin *= this.freeSpinMultiplier;
-                    this.freeSpinsTotalWin += spinWin;
-                    this.fsTotalWinEl.innerText = `$${this.freeSpinsTotalWin}`;
-                }
-
-                this.balance += spinWin;
-                this.winEl.innerText = `$${spinWin}`;
-
-                if (spinWin > 0) {
-                    this.sounds.playWin();
-                    if (typeof confetti === 'function') {
-                        confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
-                    }
-                }
-
-                // 3. FREISPIEL TRIGGER PRÜFEN (Exakt oder mehr als 4 Scatter)
-                if (scatterCount >= 4) {
-                    this.sounds.playScatterFanfare();
-                    this.highlightScatters(scatterPositions);
-
-                    if (!this.inFreeSpins) {
-                        // Neue Freispiele starten
-                        this.inFreeSpins = true;
-                        this.freeSpinsLeft = 10;
-                        this.freeSpinsTotalWin = 0;
-                        document.body.classList.add('freespin-mode');
-                        this.freeSpinHeader.classList.remove('hidden');
-                        this.fsCountBadge.innerText = this.freeSpinsLeft;
-                        
-                        setTimeout(() => {
-                            this.freeSpinTriggerModal.classList.remove('hidden');
-                        }, 1000);
-                        return;
-                    } else {
-                        // Retrigger während Freispielen (+5 Spins)
-                        this.freeSpinsLeft += 5;
-                        this.fsCountBadge.innerText = this.freeSpinsLeft;
-                        this.statusBanner.innerText = "🔥 RETRIGGER! +5 FREISPIELE! 🔥";
-                    }
-                }
-
-                // 4. FREISPIEL-LOOP STEUERN
-                if (this.inFreeSpins) {
-                    this.freeSpinsLeft--;
-                    this.fsCountBadge.innerText = this.freeSpinsLeft;
-
-                    if (this.freeSpinsLeft <= 0) {
-                        // Freispiele zu Ende
                         this.inFreeSpins = false;
-                        setTimeout(() => {
-                            this.fsEndTotalWinText.innerText = `$${this.freeSpinsTotalWin}`;
-                            this.freeSpinEndModal.classList.remove('hidden');
-                        }, 1200);
-                    } else {
-                        // Nächstes Freispiel automatisch nach 1.5s
-                        setTimeout(() => this.runFreeSpin(), 1500);
+                        this.freeSpinsLeft = 0;
+                        this.freeSpinsTotalWin = 0;
+                        this.freeSpinMultiplier = 2;
+
+                        this.sounds = new SoundEngine();
+                        this.reelStrips = [[], [], [], [], []];
+                        this.finalGrid = [];
+
+                        this.initDOM();
+                        this.bindEvents();
+                        this.generateStrips();
+                        this.updateUI();
                     }
-                } else if (this.autoSpin) {
-                    setTimeout(() => {
-                        if (this.autoSpin) this.startSpin();
-                    }, 1000);
+
+                    saveBalance() {
+                        localStorage.setItem('bankroll', this.balance);
+                    }
+
+                    initDOM() {
+                        this.balanceEl = document.getElementById('balanceDisplay');
+                        this.betEl = document.getElementById('betDisplay');
+                        this.winEl = document.getElementById('winDisplay');
+                        this.fsTotalWinEl = document.getElementById('fsTotalWinDisplay');
+
+                        this.spinBtn = document.getElementById('spinBtn');
+                        this.spinBtnText = document.getElementById('spinBtnText');
+                        this.autoSpinBtn = document.getElementById('autoSpinBtn');
+                        this.autoSpinText = document.getElementById('autoSpinText');
+
+                        this.betIncBtn = document.getElementById('betIncBtn');
+                        this.betDecBtn = document.getElementById('betDecBtn');
+                        this.maxBetBtn = document.getElementById('maxBetBtn');
+
+                        this.soundToggleBtn = document.getElementById('soundToggleBtn');
+                        this.soundIcon = document.getElementById('soundIcon');
+                        this.statusBanner = document.getElementById('statusBanner');
+
+                        this.paytableModal = document.getElementById('paytableModal');
+                        this.openPaytableBtn = document.getElementById('openPaytableBtn');
+                        this.closePaytableBtn = document.getElementById('closePaytableBtn');
+
+                        this.freeSpinTriggerModal = document.getElementById('freeSpinTriggerModal');
+                        this.startFreeSpinsBtn = document.getElementById('startFreeSpinsBtn');
+                        this.freeSpinEndModal = document.getElementById('freeSpinEndModal');
+                        this.closeFreeSpinsEndBtn = document.getElementById('closeFreeSpinsEndBtn');
+                        this.freeSpinHeader = document.getElementById('freeSpinHeader');
+                        this.fsCountBadge = document.getElementById('fsCountBadge');
+                        this.fsEndTotalWinText = document.getElementById('fsEndTotalWinText');
+                    }
+
+                    bindEvents() {
+                        this.spinBtn.addEventListener('click', () => {
+                            this.sounds.init();
+                            this.startSpin();
+                        });
+
+                        this.autoSpinBtn.addEventListener('click', () => {
+                            this.sounds.init();
+                            this.toggleAutoSpin();
+                        });
+
+                        this.betIncBtn.addEventListener('click', () => this.adjustBet(5));
+                        this.betDecBtn.addEventListener('click', () => this.adjustBet(-5));
+                        this.maxBetBtn.addEventListener('click', () => {
+                            this.bet = this.maxBet;
+                            this.updateUI();
+                        });
+
+                        this.soundToggleBtn.addEventListener('click', () => {
+                            const isMuted = this.sounds.toggleMute();
+                            this.soundIcon.className = isMuted ? "fa-solid fa-volume-xmark text-red-400" : "fa-solid fa-volume-high text-sm";
+                        });
+
+                        this.openPaytableBtn.addEventListener('click', () => this.paytableModal.classList.remove('hidden'));
+                        this.closePaytableBtn.addEventListener('click', () => this.paytableModal.classList.add('hidden'));
+
+                        this.startFreeSpinsBtn.addEventListener('click', () => {
+                            this.freeSpinTriggerModal.classList.add('hidden');
+                            this.runFreeSpin();
+                        });
+
+                        this.closeFreeSpinsEndBtn.addEventListener('click', () => {
+                            this.freeSpinEndModal.classList.add('hidden');
+                            document.body.classList.remove('freespin-mode');
+                            this.freeSpinHeader.classList.add('hidden');
+                            this.updateUI();
+                        });
+
+                        // Synchronisation, falls Bankroll in einem anderen Tab verändert wurde
+                        window.addEventListener('storage', (e) => {
+                            if (e.key === 'bankroll' && !this.isSpinning) {
+                                this.balance = parseFloat(e.newValue) || 0;
+                                this.updateUI();
+                            }
+                        });
+                    }
+
+                    getRandomSymbol() {
+                        const rand = Math.random();
+                        if (rand < 0.08) return SYMBOLS.find(s => s.id === 'scatter');
+                        if (rand < 0.13) return SYMBOLS.find(s => s.id === 'wild');
+                        if (rand < 0.20) return SYMBOLS.find(s => s.id === '777');
+                        if (rand < 0.30) return SYMBOLS.find(s => s.id === 'crown');
+                        if (rand < 0.42) return SYMBOLS.find(s => s.id === 'diamond');
+                        if (rand < 0.56) return SYMBOLS.find(s => s.id === 'bell');
+                        if (rand < 0.70) return SYMBOLS.find(s => s.id === 'melon');
+                        if (rand < 0.85) return SYMBOLS.find(s => s.id === 'lemon');
+                        return SYMBOLS.find(s => s.id === 'cherry');
+                    }
+
+                    generateStrips() {
+                        for (let r = 0; r < 5; r++) {
+                            const reelEl = document.getElementById(`reel${r + 1}`);
+                            reelEl.innerHTML = '';
+                            this.reelStrips[r] = [];
+
+                            for (let i = 0; i < STRIP_LENGTH; i++) {
+                                const sym = this.getRandomSymbol();
+                                this.reelStrips[r].push(sym);
+
+                                const cell = document.createElement('div');
+                                cell.className = 'symbol-cell';
+                                cell.innerHTML = `<span>${sym.char}</span>`;
+                                reelEl.appendChild(cell);
+                            }
+                        }
+                    }
+
+                    adjustBet(val) {
+                        if (this.isSpinning || this.inFreeSpins) return;
+                        this.bet = Math.max(this.minBet, Math.min(this.maxBet, this.bet + val));
+                        this.updateUI();
+                    }
+
+                    toggleAutoSpin() {
+                        if (this.inFreeSpins) return;
+                        this.autoSpin = !this.autoSpin;
+                        if (this.autoSpin) {
+                            this.autoSpinBtn.classList.add('bg-gold-500/30', 'border-gold-400');
+                            this.autoSpinText.innerText = 'Stop';
+                            if (!this.isSpinning) this.startSpin();
+                        } else {
+                            this.autoSpinBtn.classList.remove('bg-gold-500/30', 'border-gold-400');
+                            this.autoSpinText.innerText = 'Auto';
+                        }
+                    }
+
+                    startSpin() {
+                        if (this.isSpinning) return;
+
+                        if (!this.inFreeSpins) {
+                            if (this.balance < this.bet) {
+                                alert("Nicht genügend Guthaben!");
+                                this.autoSpin = false;
+                                this.updateUI();
+                                return;
+                            }
+                            this.balance -= this.bet;
+                            this.saveBalance();
+                        }
+
+                        this.isSpinning = true;
+                        this.clearHighlights();
+                        this.winEl.innerText = formatCurrency(0);
+                        this.updateUI();
+
+                        let completedReels = 0;
+                        this.finalGrid = [[], [], [], [], []];
+
+                        for (let r = 0; r < 5; r++) {
+                            const reelEl = document.getElementById(`reel${r + 1}`);
+
+                            for(let i = 0; i < 3; i++) {
+                                const sym = this.getRandomSymbol();
+                                this.reelStrips[r].push(sym);
+                                const cell = document.createElement('div');
+                                cell.className = 'symbol-cell';
+                                cell.innerHTML = `<span>${sym.char}</span>`;
+                                reelEl.appendChild(cell);
+                            }
+
+                            const totalCells = reelEl.children.length;
+                            this.finalGrid[r] = [
+                                this.reelStrips[r][totalCells - 3],
+                                this.reelStrips[r][totalCells - 2],
+                                this.reelStrips[r][totalCells - 1]
+                            ];
+
+                            const cellHeight = window.innerWidth <= 640 ? 75 : 110;
+                            const targetY = -((totalCells - 3) * cellHeight);
+
+                            setTimeout(() => {
+                                reelEl.style.transition = 'transform 1.2s cubic-bezier(0.1, 0.9, 0.2, 1.0)';
+                                reelEl.style.transform = `translateY(${targetY}px)`;
+
+                                setTimeout(() => {
+                                    this.sounds.playReelStop();
+                                    completedReels++;
+                                    if (completedReels === 5) {
+                                        this.evaluateSpin();
+                                    }
+                                }, 1200 + (r * 150));
+                            }, 50);
+                        }
+                    }
+
+                    evaluateSpin() {
+                        this.isSpinning = false;
+                        let spinWin = 0;
+
+                        let scatterCount = 0;
+                        let scatterPositions = [];
+
+                        for (let r = 0; r < 5; r++) {
+                            for (let row = 0; row < 3; row++) {
+                                if (this.finalGrid[r][row] && this.finalGrid[r][row].id === 'scatter') {
+                                    scatterCount++;
+                                    scatterPositions.push({ r, row });
+                                }
+                            }
+                        }
+
+                        PAYLINES.forEach((line) => {
+                            const firstSym = this.finalGrid[0][line[0]];
+                            if (!firstSym || firstSym.isScatter) return;
+
+                            let matchSym = firstSym.isWild ? null : firstSym;
+                            let matchCount = 0;
+
+                            for (let r = 0; r < 5; r++) {
+                                const currentSym = this.finalGrid[r][line[r]];
+                                if (!currentSym) break;
+
+                                if (currentSym.isScatter) break;
+
+                                if (currentSym.isWild) {
+                                    matchCount++;
+                                } else if (!matchSym) {
+                                    matchSym = currentSym;
+                                    matchCount++;
+                                } else if (currentSym.id === matchSym.id) {
+                                    matchCount++;
+                                } else {
+                                    break;
+                                }
+                            }
+
+                            if (matchSym && matchCount >= 3) {
+                                const basePay = matchSym.mults[matchCount - 1] || 0;
+                                spinWin += basePay * this.bet;
+                            }
+                        });
+
+                        if (this.inFreeSpins) {
+                            spinWin *= this.freeSpinMultiplier;
+                            this.freeSpinsTotalWin += spinWin;
+                            this.fsTotalWinEl.innerText = formatCurrency(this.freeSpinsTotalWin);
+                        }
+
+                        this.balance += spinWin;
+                        this.saveBalance();
+                        this.winEl.innerText = formatCurrency(spinWin);
+
+                        if (spinWin > 0) {
+                            this.sounds.playWin();
+                            if (typeof confetti === 'function') {
+                                confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
+                            }
+                        }
+
+                        if (scatterCount >= 4) {
+                            this.sounds.playScatterFanfare();
+                            this.highlightScatters(scatterPositions);
+
+                            if (!this.inFreeSpins) {
+                                this.inFreeSpins = true;
+                                this.freeSpinsLeft = 10;
+                                this.freeSpinsTotalWin = 0;
+                                document.body.classList.add('freespin-mode');
+                                this.freeSpinHeader.classList.remove('hidden');
+                                this.fsCountBadge.innerText = this.freeSpinsLeft;
+
+                                setTimeout(() => {
+                                    this.freeSpinTriggerModal.classList.remove('hidden');
+                                }, 1000);
+                                return;
+                            } else {
+                                this.freeSpinsLeft += 5;
+                                this.fsCountBadge.innerText = this.freeSpinsLeft;
+                                this.statusBanner.innerText = "🔥 RETRIGGER! +5 FREISPIELE! 🔥";
+                            }
+                        }
+
+                        if (this.inFreeSpins) {
+                            this.freeSpinsLeft--;
+                            this.fsCountBadge.innerText = this.freeSpinsLeft;
+
+                            if (this.freeSpinsLeft <= 0) {
+                                this.inFreeSpins = false;
+                                setTimeout(() => {
+                                    this.fsEndTotalWinText.innerText = formatCurrency(this.freeSpinsTotalWin);
+                                    this.freeSpinEndModal.classList.remove('hidden');
+                                }, 1200);
+                            } else {
+                                setTimeout(() => this.runFreeSpin(), 1500);
+                            }
+                        } else if (this.autoSpin) {
+                            setTimeout(() => {
+                                if (this.autoSpin) this.startSpin();
+                            }, 1000);
+                        }
+
+                        this.updateUI();
+                    }
+
+                    runFreeSpin() {
+                        if (this.freeSpinsLeft > 0) {
+                            this.startSpin();
+                        }
+                    }
+
+                    highlightScatters(positions) {
+                        positions.forEach(pos => {
+                            const reelEl = document.getElementById(`reel${pos.r + 1}`);
+                            const cell = reelEl.children[reelEl.children.length - 3 + pos.row];
+                            if (cell) cell.classList.add('winning-symbol');
+                        });
+                    }
+
+                    clearHighlights() {
+                        document.querySelectorAll('.symbol-cell').forEach(c => c.classList.remove('winning-symbol'));
+                    }
+
+                    updateUI() {
+                        this.balanceEl.innerText = formatCurrency(this.balance);
+                        this.betEl.innerText = formatCurrency(this.bet);
+
+                        if (this.inFreeSpins) {
+                            this.spinBtn.disabled = true;
+                            this.spinBtnText.innerText = 'FREISPIEL';
+                            this.autoSpinBtn.disabled = true;
+                            this.betIncBtn.disabled = true;
+                            this.betDecBtn.disabled = true;
+                            this.maxBetBtn.disabled = true;
+                        } else {
+                            this.spinBtn.disabled = this.isSpinning;
+                            this.spinBtnText.innerText = this.isSpinning ? 'SPIN...' : 'SPIN';
+                            this.autoSpinBtn.disabled = false;
+                            this.betIncBtn.disabled = this.isSpinning;
+                            this.betDecBtn.disabled = this.isSpinning;
+                            this.maxBetBtn.disabled = this.isSpinning;
+                        }
+                    }
                 }
 
-                this.updateUI();
-            }
-
-            runFreeSpin() {
-                if (this.freeSpinsLeft > 0) {
-                    this.startSpin();
-                }
-            }
-
-            highlightScatters(positions) {
-                positions.forEach(pos => {
-                    const reelEl = document.getElementById(`reel${pos.r + 1}`);
-                    const cell = reelEl.children[reelEl.children.length - 3 + pos.row];
-                    if (cell) cell.classList.add('winning-symbol');
+                // Spiel beim Laden initialisieren
+                window.addEventListener('DOMContentLoaded', () => {
+                    new SlotEngine();
                 });
-            }
-
-            clearHighlights() {
-                document.querySelectorAll('.symbol-cell').forEach(c => c.classList.remove('winning-symbol'));
-            }
-
-            updateUI() {
-                this.balanceEl.innerText = `$${this.balance.toLocaleString()}`;
-                this.betEl.innerText = `$${this.bet}`;
-
-                if (this.inFreeSpins) {
-                    this.spinBtn.disabled = true;
-                    this.spinBtnText.innerText = 'FREISPIEL';
-                    this.autoSpinBtn.disabled = true;
-                    this.betIncBtn.disabled = true;
-                    this.betDecBtn.disabled = true;
-                    this.maxBetBtn.disabled = true;
-                } else {
-                    this.spinBtn.disabled = this.isSpinning;
-                    this.spinBtnText.innerText = this.isSpinning ? 'SPIN...' : 'SPIN';
-                    this.autoSpinBtn.disabled = false;
-                    this.betIncBtn.disabled = this.isSpinning;
-                    this.betDecBtn.disabled = this.isSpinning;
-                    this.maxBetBtn.disabled = this.isSpinning;
-                }
-            }
-        }
-
-        // Spiel beim Laden der Seite initialisieren
-        window.addEventListener('DOMContentLoaded', () => {
-            window.slotGame = new SlotEngine();
-        });
     </script>
 </body>
 </html>
