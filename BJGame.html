@@ -3,161 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guthaben Verwalten</title>
+    <title>Bankroll Manager</title>
+    <!-- Tailwind CSS & FontAwesome Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+            min-height: 100vh;
         }
 
-        .card {
-            background-color: #333;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            width: 320px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        .font-serif-title {
+            font-family: 'Cinzel', serif;
         }
 
-        .input-group {
-            margin: 20px 0;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            border: 1px solid #555;
-            background-color: #444;
-            color: #fff;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            flex: 1;
-            padding: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .btn-save {
-            background-color: #28a745;
-        }
-
-            .btn-save:hover {
-                background-color: #218838;
-            }
-
-        .btn-reset {
-            background-color: #dc3545;
-        }
-
-            .btn-reset:hover {
-                background-color: #c82333;
-            }
-
-        #status {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #28a745;
-            min-height: 20px;
+        .glow-box {
+            box-shadow: 0 0 25px rgba(234, 179, 8, 0.15);
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center p-4 text-white">
 
-    <div class="card">
-        <h1>Guthaben-Manager</h1>
+    <!-- Hauptkarte -->
+    <div class="card bg-gray-900/80 backdrop-blur-md border border-amber-500/30 rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl glow-box text-center relative overflow-hidden">
 
-        <p>Aktueller Stand: <strong><span id="current-balance">100</span> Münzen</strong></p>
+        <!-- Deko-Elemente im Hintergrund -->
+        <div class="absolute -right-8 -top-8 w-28 h-28 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -left-8 -bottom-8 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
-        <div class="input-group">
-            <label for="new-balance">Neuen Wert festlegen:</label>
-            <input type="number" id="new-balance" placeholder="z. B. 500" min="0">
+        <!-- Titel & Header -->
+        <div class="flex items-center justify-center gap-3 mb-6">
+            <i class="fa-solid fa-wallet text-amber-400 text-3xl"></i>
+            <h2 class="font-serif-title text-2xl md:text-3xl font-bold text-amber-300 tracking-wider">
+                BANKROLL
+            </h2>
         </div>
 
-        <div class="btn-group">
-            <button class="btn-save" id="save-btn">Speichern</button>
-            <button class="btn-reset" id="reset-btn">Reset (100)</button>
+        <!-- Live-Anzeige der Bankroll -->
+        <div class="my-6 p-5 bg-gradient-to-r from-emerald-950/80 to-green-900/80 border border-emerald-500/40 rounded-xl shadow-inner">
+            <span class="text-xs uppercase tracking-widest text-emerald-300/70 font-semibold block mb-1">
+                Aktuelles Guthaben
+            </span>
+            <div class="text-3xl md:text-4xl font-extrabold text-emerald-400 tracking-tight" id="bankrollDisplay">
+                0,00 €
+            </div>
         </div>
 
-        <p id="status"></p>
+        <!-- Eingabefeld zur Anpassung -->
+        <div class="space-y-2 text-left mb-8">
+            <label for="bankrollInput" class="text-xs text-gray-400 font-medium tracking-wide flex items-center gap-1.5">
+                <i class="fa-solid fa-pen-to-square text-amber-400"></i> Guthaben anpassen:
+            </label>
+            <div class="relative">
+                <input type="number" id="bankrollInput" step="1" placeholder="z. B. 1000"
+                       class="w-full bg-black/50 border border-amber-500/30 rounded-xl px-4 py-3 text-amber-300 font-bold focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition placeholder-gray-600">
+            </div>
+        </div>
+
+        <!-- Verlinkung zum Blackjack Casino -->
+        <a href="index.html"
+           class="w-full inline-flex items-center justify-center gap-3 py-3.5 px-6 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-bold rounded-xl shadow-lg transition transform active:scale-95 text-sm md:text-base">
+            <i class="fa-solid fa-dice text-lg"></i>
+            Zum Menü zurück
+        </a>
+
     </div>
 
+    <!-- JavaScript Sync Logic -->
     <script>
-                // DOM-Elemente
-                const currentBalanceDisplay = document.getElementById('current-balance');
-                const newBalanceInput = document.getElementById('new-balance');
-                const saveBtn = document.getElementById('save-btn');
-                const resetBtn = document.getElementById('reset-btn');
-                const statusDisplay = document.getElementById('status');
+                const bankrollDisplay = document.getElementById('bankrollDisplay');
+                const bankrollInput = document.getElementById('bankrollInput');
 
-                // Funktion: Liest 'globalBalance' aus dem localStorage und zeigt ihn an
-                function loadBalance() {
-                    let balance = parseInt(localStorage.getItem('globalBalance'));
-                    if (isNaN(balance)) {
-                        balance = 100; // Standardwert
-                    }
-                    currentBalanceDisplay.textContent = balance;
-                }
-
-                // Funktion: Speichert einen neuen Wert in 'globalBalance'
-                function setBalance(newValue) {
-                    localStorage.setItem('globalBalance', newValue);
-                    loadBalance();
-                    showStatus(`Guthaben auf ${newValue} gesetzt!`);
-                }
-
-                // Statusmeldung für den Benutzer
-                function showStatus(msg) {
-                    statusDisplay.textContent = msg;
-                    setTimeout(() => {
-                        statusDisplay.textContent = '';
-                    }, 3000);
-                }
-
-                // Event-Listener: Speichern-Button
-                saveBtn.addEventListener('click', () => {
-                    const inputValue = parseInt(newBalanceInput.value);
-                    if (!isNaN(inputValue) && inputValue >= 0) {
-                        setBalance(inputValue);
-                        newBalanceInput.value = '';
+                // Funktion zum Formatieren und Anzeigen der Bankroll
+                function updateBankrollUI(val) {
+                    const numericValue = parseFloat(val);
+                    if (isNaN(numericValue) || val === '' || val === null) {
+                        bankrollDisplay.textContent = '0,00 €';
+                        bankrollInput.value = '';
                     } else {
-                        showStatus("Bitte eine gültige Zahl eingeben!");
+                        bankrollDisplay.textContent = numericValue.toLocaleString('de-DE', {
+                            style: 'currency',
+                            currency: 'EUR'
+                        });
+                        bankrollInput.value = numericValue;
                     }
-                });
+                }
 
-                // Event-Listener: Reset-Button
-                resetBtn.addEventListener('click', () => {
-                    setBalance(100);
-                });
+                // 1. Beim Laden der Seite: Gespeicherten 'bankroll'-Wert aus localStorage abrufen
+                const savedBankroll = localStorage.getItem('bankroll');
+                updateBankrollUI(savedBankroll !== null ? savedBankroll : 1000);
 
-                // Automatische Aktualisierung, falls der Wert in einem anderen Tab geändert wird
+                // 2. Speicher-Event für synchrone Updates aus anderen Tabs/Seiten
                 window.addEventListener('storage', (event) => {
-                    if (event.key === 'globalBalance') {
-                        loadBalance();
+                    if (event.key === 'bankroll') {
+                        updateBankrollUI(event.newValue);
                     }
                 });
 
-                // Beim ersten Laden den aktuellen Wert anzeigen
-                loadBalance();
+                // 3. Änderungen in diesem Feld speichern & an andere Tabs senden
+                bankrollInput.addEventListener('input', (e) => {
+                    const newValue = e.target.value;
+                    localStorage.setItem('bankroll', newValue);
+                    updateBankrollUI(newValue);
+                });
     </script>
 
 </body>
