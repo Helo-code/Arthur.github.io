@@ -149,7 +149,6 @@
         </div>
 
         <div class="flex items-center gap-2 md:gap-3">
-            <!-- Verlinkung zum Bankroll Manager -->
             <a href="BJGame.html" class="px-3 py-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-stone-950 font-game rounded-xl shadow-lg border border-emerald-400 text-xs md:text-sm tracking-wide transition transform hover:scale-105 active:scale-95 flex items-center gap-1.5">
                 <i class="fa-solid fa-wallet"></i>
                 <span>BANKROLL</span>
@@ -167,14 +166,10 @@
     </header>
 
     <main class="w-full max-w-4xl flex-1 flex flex-col items-center justify-center z-10 my-auto">
-        <!-- 5x5 Grid Container -->
         <div class="relative bg-stone-950/95 border-4 border-amber-900/60 p-2.5 md:p-3 rounded-3xl shadow-2xl backdrop-blur-xl w-full max-w-[480px]">
-            <!-- Reel Frame Grid Matrix -->
             <div id="slotGrid" class="grid-container grid grid-cols-5 gap-1.5 md:gap-2 aspect-square w-full rounded-2xl">
-                <!-- 25 Cells dynamically created -->
             </div>
 
-            <!-- Free Spins Active Badge -->
             <div id="freeSpinBadge" class="hidden absolute top-3 right-3 bg-gradient-to-r from-red-600 to-amber-600 text-white font-game text-xs px-3.5 py-1.5 rounded-full border border-yellow-300 shadow-xl animate-bounce">
                 FREISPIELE: <span id="fsCount">0</span>
             </div>
@@ -186,7 +181,6 @@
     </main>
 
     <footer class="w-full max-w-4xl z-10 bg-stone-900/90 border border-amber-900/60 p-3 md:p-4 rounded-2xl shadow-2xl backdrop-blur-md mt-2 flex flex-col md:flex-row justify-between items-center gap-3">
-        <!-- Balance and Stats Displays -->
         <div class="flex items-center justify-between w-full md:w-auto gap-3 md:gap-4 bg-stone-950/70 p-2.5 rounded-xl border border-stone-800/80">
             <div class="flex flex-col">
                 <span class="text-[9px] text-amber-200/50 uppercase font-bold tracking-wider">Guthaben</span>
@@ -199,9 +193,7 @@
             </div>
         </div>
 
-        <!-- Controls (Einsatz, Auto, Turbo, Spin) -->
         <div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-2.5">
-            <!-- Bet Control -->
             <div class="flex items-center bg-stone-950/70 rounded-xl border border-stone-800/80 p-1">
                 <button id="betDown" class="w-8 h-8 flex items-center justify-center bg-stone-800 hover:bg-stone-700 text-amber-400 font-bold rounded-lg transition active:scale-90">-</button>
                 <div class="px-3 flex flex-col items-center min-w-[70px]">
@@ -211,7 +203,6 @@
                 <button id="betUp" class="w-8 h-8 flex items-center justify-center bg-stone-800 hover:bg-stone-700 text-amber-400 font-bold rounded-lg transition active:scale-90">+</button>
             </div>
 
-            <!-- Toggles -->
             <div class="flex items-center gap-1.5">
                 <button id="turboBtn" class="px-2.5 py-2 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded-xl text-amber-200/60 font-bold text-xs transition flex flex-col items-center min-w-[48px] active:scale-95">
                     <i class="fa-solid fa-bolt text-xs mb-0.5"></i>
@@ -223,7 +214,6 @@
                 </button>
             </div>
 
-            <!-- Main Spin Button -->
             <button id="spinBtn" class="w-16 h-16 md:w-18 md:h-18 bg-gradient-to-b from-amber-400 via-amber-500 to-amber-700 hover:brightness-110 rounded-2xl border-2 border-yellow-200 shadow-xl flex items-center justify-center text-stone-950 text-2xl md:text-3xl transition transform active:scale-90">
                 <i class="fa-solid fa-play ml-1"></i>
             </button>
@@ -237,29 +227,10 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <h2 class="font-game text-2xl text-amber-400 mb-2 border-b border-amber-800/50 pb-2">LESLOTS - RULES & PAYOUTS</h2>
-            
             <div class="space-y-4 text-xs md:text-sm">
                 <div class="bg-amber-950/40 p-3 rounded-xl border border-amber-800/50">
                     <h3 class="font-game text-amber-400 text-sm mb-1">🌈 0.1% Regenbogen-Wahrscheinlichkeit</h3>
-                    <p class="text-stone-300">Der Regenbogen (🌈) taucht mit einer Chance von genau <strong>0.1% (1 in 1.000 pro Position)</strong> auf! Bei einer Auslösung werden alle aufgebauten Goldenen Quadrate enthüllt.</p>
-                </div>
-                <div>
-                    <h3 class="font-game text-amber-300 text-base mb-1">🏺 Collector & ☘️ Kleeblatt</h3>
-                    <p class="text-stone-300">Enthüllte Goldene Quadrate bringen Münzen (streng max. 100x per Coin):</p>
-                    <ul class="list-disc list-inside mt-1 text-stone-300 space-y-1">
-                        <li>🥉 Bronze Münzen: 0.2x, 0.5x, 1x, 2x, 5x</li>
-                        <li>🥈 Silber Münzen: 10x, 15x, 20x</li>
-                        <li>🥇 Gold Münzen (Gedeckelt auf 100x): 25x, 50x, 75x, 100x</li>
-                        <li>☘️ Kleeblatt: Multipliziert benachbarte Münzen (x2, x3, x5, x10).</li>
-                        <li>🏺 Collector (Pott Gold): Saugt alle Münzwerte auf dem Feld auf!</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-game text-amber-300 text-base mb-1">📸 Freispiele</h3>
-                    <ul class="list-disc list-inside text-stone-300 space-y-1">
-                        <li>3x Scatter: 8 Freispiele (Luck of the Bandit)</li>
-                        <li>4x Scatter: 12 Freispiele (All That Glitters - Persistent Gold Squares!)</li>
-                    </ul>
+                    <p class="text-stone-300">Der Regenbogen (🌈) taucht mit einer Chance von genau <strong>0.1%</strong> auf!</p>
                 </div>
             </div>
         </div>
@@ -273,13 +244,11 @@
             </button>
             <div class="text-4xl mb-2">📸🦝</div>
             <h2 class="font-game text-2xl text-amber-400 mb-1">BONUS KAUFEN</h2>
-            <p class="text-xs text-stone-400 mb-4">Wähle deine Risiko-Stufe:</p>
             
-            <div class="grid grid-cols-1 gap-3 mb-4">
+            <div class="grid grid-cols-1 gap-3 mb-4 mt-4">
                 <button id="buyStandardFS" class="p-3 bg-stone-950 hover:bg-stone-800 rounded-xl border border-amber-600 flex justify-between items-center transition text-left">
                     <div>
                         <div class="font-game text-amber-300 text-sm">Luck of the Bandit (8 FS)</div>
-                        <div class="text-[10px] text-stone-400">Goldene Quadrate werden nach Regenbogen zurückgesetzt</div>
                     </div>
                     <span id="priceStandardFS" class="font-game text-amber-400 text-base min-w-[80px] text-right">100,00 €</span>
                 </button>
@@ -287,7 +256,6 @@
                 <button id="buySuperFS" class="p-3 bg-stone-950 hover:bg-stone-800 rounded-xl border border-yellow-500 flex justify-between items-center transition text-left">
                     <div>
                         <div class="font-game text-yellow-400 text-sm">All That Glitters (12 FS)</div>
-                        <div class="text-[10px] text-stone-400">Goldene Quadrate bleiben dauerhaft bestehen!</div>
                     </div>
                     <span id="priceSuperFS" class="font-game text-yellow-400 text-base min-w-[80px] text-right">250,00 €</span>
                 </button>
@@ -295,7 +263,7 @@
         </div>
     </div>
 
-    <!-- Big Win / Total Bonus Win Celebration Overlay -->
+    <!-- Celebration Overlay -->
     <div id="bigWinOverlay" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center pointer-events-none">
         <div class="text-center animate-bigwin p-6">
             <div class="text-6xl mb-2" id="bigWinIcon">🎉🦝💰</div>
@@ -305,7 +273,6 @@
     </div>
 
     <script>
-        // --- BANKROLL LOCALSTORAGE SYNC ENGINE ---
         let balance = 1000.00;
 
         function loadBankroll() {
@@ -335,7 +302,6 @@
             }
         });
 
-        /* Web Audio Sound Engine */
         class SoundEngine {
             constructor() {
                 this.ctx = null;
@@ -440,7 +406,6 @@
         };
 
         const REGULAR_KEYS = ['BAGUETTE', 'CHEESE', 'BEER', 'HAT', 'POT'];
-
         const betLevels = [0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00];
         let currentBetIdx = 2;
         let bet = betLevels[currentBetIdx];
@@ -453,9 +418,8 @@
         let freeSpins = 0;
         let isPersistentFS = false;
         let totalWinThisSpin = 0;
-        let totalBonusWin = 0; // Kumulierter Gewinn der gesamten Freispiel-Runde
+        let totalBonusWin = 0;
 
-        // DOM Elements
         const gridEl = document.getElementById('slotGrid');
         const balanceDisplay = document.getElementById('balanceDisplay');
         const winDisplay = document.getElementById('winDisplay');
@@ -505,11 +469,8 @@
             if (freeSpins > 0) {
                 freeSpinBadge.classList.remove('hidden');
                 fsCountEl.textContent = freeSpins;
-                if (isPersistentFS) {
-                    fsTypeBadge.classList.remove('hidden');
-                } else {
-                    fsTypeBadge.classList.add('hidden');
-                }
+                if (isPersistentFS) fsTypeBadge.classList.remove('hidden');
+                else fsTypeBadge.classList.add('hidden');
             } else {
                 freeSpinBadge.classList.add('hidden');
                 fsTypeBadge.classList.add('hidden');
@@ -518,7 +479,6 @@
 
         function getRandomSymbol() {
             const rand = Math.random();
-            // EXACT 0.1% Chance (0.001 probability)
             if (rand < 0.001) return { ...SYMBOLS.RAINBOW };
             if (rand < 0.013) return { ...SYMBOLS.SCATTER };
             if (rand < 0.048) return { ...SYMBOLS.WILD };
@@ -533,11 +493,8 @@
                 const cell = cells[i];
                 const sym = grid[i];
 
-                if (goldenSquares[i]) {
-                    cell.classList.add('golden-square');
-                } else {
-                    cell.classList.remove('golden-square');
-                }
+                if (goldenSquares[i]) cell.classList.add('golden-square');
+                else cell.classList.remove('golden-square');
 
                 cell.innerHTML = '';
                 if (sym) {
@@ -598,11 +555,8 @@
                     }
                 }
 
-                if (cluster.length >= 5) {
-                    clusters.push(cluster);
-                }
+                if (cluster.length >= 5) clusters.push(cluster);
             }
-
             return clusters;
         }
 
@@ -618,7 +572,7 @@
                     return;
                 }
                 saveBankroll(balance - bet);
-                goldenSquares.fill(false); // Zurücksetzen für normalen Einzelspin
+                goldenSquares.fill(false);
             } else {
                 freeSpins--;
             }
@@ -633,7 +587,6 @@
 
             await new Promise(r => setTimeout(r, turbo ? 300 : 550));
 
-            // Cluster Pay Auswertung
             const clusters = findClusters();
             let spinWin = 0;
 
@@ -654,7 +607,6 @@
                 }
             }
 
-            // Regenbogen Aktivierung
             const hasRainbow = grid.some(s => s && s.isSpecial);
             if (hasRainbow && goldenSquares.includes(true)) {
                 sound.playRainbow();
@@ -677,7 +629,7 @@
                             const cRand = Math.random();
                             if (cRand < 0.6) val = [0.2, 0.5, 1, 2, 5][Math.floor(Math.random() * 5)];
                             else if (cRand < 0.9) val = [10, 15, 20][Math.floor(Math.random() * 3)];
-                            else val = [25, 50, 75, 100][Math.floor(Math.random() * 4)]; // MAX 100x CAP
+                            else val = [25, 50, 75, 100][Math.floor(Math.random() * 4)];
                             
                             coinMap[i] = bet * val;
                             grid[i] = { icon: '🪙', value: val };
@@ -698,13 +650,11 @@
 
                 spinWin += coinSum;
 
-                // Nicht-persistente Goldfelder nach Regenbogen auflösen (falls normale FS)
                 if (freeSpins > 0 && !isPersistentFS) {
                     goldenSquares.fill(false);
                 }
             }
 
-            // Scatter / Freispiel Check
             const scatters = grid.filter(s => s && s.isScatter).length;
             if (scatters >= 3) {
                 const addedFs = scatters >= 4 ? 12 : 8;
@@ -715,11 +665,11 @@
 
             if (spinWin > 0) {
                 totalWinThisSpin = spinWin;
-                totalBonusWin += spinWin; // Aufaddieren für das Freispiel-Ende
+                totalBonusWin += spinWin;
                 saveBankroll(balance + spinWin);
 
-                // NUR ANZEIGEN WENN DER SPIN-GEWINN 1000% DES EINSATZES (>= 10x) ERREICHT (BEI EINZELSPINS)
-                if (spinWin >= bet * 10 && freeSpins === 0) {
+                // NUR ANZEIGEN AB 10.000% (100x des Einsatzes) IM BASISSPIEL
+                if (spinWin >= bet * 100 && freeSpins === 0) {
                     bigWinIcon.textContent = "🎉🦝💰";
                     bigWinTitle.textContent = "MEGA WIN!";
                     bigWinAmount.textContent = spinWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
@@ -732,21 +682,20 @@
             spinBtn.disabled = false;
             updateUI();
 
-            // FREISPIELE VOLLSTÄNDIG BEENDET -> BONUS-GESAMTGEWINN-OVERLAY ANZEIGEN
+            // ANZEIGE AM ENDE DER FREISPIELE
             if (freeSpins === 0 && totalBonusWin > 0) {
                 bigWinIcon.textContent = "📸🦝🏆";
                 bigWinTitle.textContent = "BONUS TOTAL WIN!";
                 bigWinAmount.textContent = totalBonusWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
                 bigWinOverlay.classList.remove('hidden');
                 
-                // Spielfeld aufräumen
                 goldenSquares.fill(false);
                 isPersistentFS = false;
                 renderGrid(false);
 
                 await new Promise(r => setTimeout(r, 3500));
                 bigWinOverlay.classList.add('hidden');
-                totalBonusWin = 0; // Reset für den nächsten Bonus
+                totalBonusWin = 0;
             }
 
             if (autoPlay || freeSpins > 0) {
