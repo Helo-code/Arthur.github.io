@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Slots </title>
+    <title>LeSlots</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 
@@ -50,16 +50,13 @@
                 transform: translateY(-120%) scaleY(1.15);
                 opacity: 0;
             }
-
             70% {
                 transform: translateY(8%) scaleY(0.92);
                 opacity: 1;
             }
-
             85% {
                 transform: translateY(-3%) scaleY(1.03);
             }
-
             100% {
                 transform: translateY(0%) scaleY(1);
                 opacity: 1;
@@ -76,12 +73,10 @@
                 transform: scale(1);
                 filter: brightness(1);
             }
-
             50% {
                 transform: scale(1.2);
                 filter: brightness(1.8) drop-shadow(0 0 14px #f59e0b);
             }
-
             100% {
                 transform: scale(1);
                 filter: brightness(1.3) drop-shadow(0 0 8px #fef08a);
@@ -94,19 +89,9 @@
 
         /* Coin Reveal Animation */
         @keyframes coinReveal {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-
-            70% {
-                transform: scale(1.2) rotate(10deg);
-            }
-
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            70% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
         .animate-coin {
@@ -115,20 +100,9 @@
 
         /* Collector Absorbing Pulse Animation */
         @keyframes collectorPulse {
-            0% {
-                transform: scale(1);
-                filter: brightness(1);
-            }
-
-            50% {
-                transform: scale(1.35) rotate(-5deg);
-                filter: brightness(2) drop-shadow(0 0 20px #ffd700);
-            }
-
-            100% {
-                transform: scale(1);
-                filter: brightness(1);
-            }
+            0% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.35) rotate(-5deg); filter: brightness(2) drop-shadow(0 0 20px #ffd700); }
+            100% { transform: scale(1); filter: brightness(1); }
         }
 
         .animate-collector {
@@ -137,20 +111,9 @@
 
         /* Big Win Banner Animation */
         @keyframes bigWinPulse {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .animate-bigwin {
@@ -162,18 +125,9 @@
             background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.92) 100%);
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #121110;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #d4af37;
-            border-radius: 3px;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #121110; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 3px; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center p-2 md:p-4 relative selection:bg-amber-500/30">
@@ -184,8 +138,12 @@
         <div class="flex items-center gap-3">
             <div class="text-3xl md:text-4xl filter drop-shadow">🦝</div>
             <div>
-                <h1 class="font-game text-xl md:text-2xl text-amber-400 tracking-wider leading-none">LE SLOTS</h1>
+                <h1 class="font-game text-xl md:text-2xl text-amber-400 tracking-wider leading-none">LESLOTS</h1>
                 <div class="flex items-center gap-2 mt-1">
+                    <span class="text-[9px] md:text-[10px] bg-amber-950/90 text-amber-400 border border-amber-700/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest animate-pulse">
+                        <i class="fa-solid fa-bolt mr-1"></i>0.1% RAINBOW MODE
+                    </span>
+                    <span class="text-[9px] md:text-[10px] text-amber-200/50 uppercase font-semibold">MAX COIN: 100x</span>
                 </div>
             </div>
         </div>
@@ -209,11 +167,6 @@
     </header>
 
     <main class="w-full max-w-4xl flex-1 flex flex-col items-center justify-center z-10 my-auto">
-        <!-- Status Banner -->
-        <div id="statusBanner" class="w-full max-w-md text-center py-2 px-4 mb-3 rounded-xl bg-stone-900/90 border border-amber-600/40 min-h-[44px] flex items-center justify-center shadow-lg backdrop-blur-md">
-            <span id="statusText" class="font-game text-amber-300 text-xs md:text-sm transition-all duration-300">GOOD LUCK!</span>
-        </div>
-
         <!-- 5x5 Grid Container -->
         <div class="relative bg-stone-950/95 border-4 border-amber-900/60 p-2.5 md:p-3 rounded-3xl shadow-2xl backdrop-blur-xl w-full max-w-[480px]">
             <!-- Reel Frame Grid Matrix -->
@@ -225,7 +178,7 @@
             <div id="freeSpinBadge" class="hidden absolute top-3 right-3 bg-gradient-to-r from-red-600 to-amber-600 text-white font-game text-xs px-3.5 py-1.5 rounded-full border border-yellow-300 shadow-xl animate-bounce">
                 FREISPIELE: <span id="fsCount">0</span>
             </div>
-
+            
             <div id="fsTypeBadge" class="hidden absolute top-3 left-3 bg-amber-900/90 text-amber-300 font-game text-[10px] px-2.5 py-1 rounded-full border border-amber-500">
                 PERSISTENT
             </div>
@@ -284,7 +237,7 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <h2 class="font-game text-2xl text-amber-400 mb-2 border-b border-amber-800/50 pb-2">LE BANDIT - RULES & PAYOUTS</h2>
-
+            
             <div class="space-y-4 text-xs md:text-sm">
                 <div class="bg-amber-950/40 p-3 rounded-xl border border-amber-800/50">
                     <h3 class="font-game text-amber-400 text-sm mb-1">🌈 0.1% Regenbogen-Wahrscheinlichkeit</h3>
@@ -321,7 +274,7 @@
             <div class="text-4xl mb-2">📸🦝</div>
             <h2 class="font-game text-2xl text-amber-400 mb-1">BONUS KAUFEN</h2>
             <p class="text-xs text-stone-400 mb-4">Wähle deine Risiko-Stufe:</p>
-
+            
             <div class="grid grid-cols-1 gap-3 mb-4">
                 <button id="buyStandardFS" class="p-3 bg-stone-950 hover:bg-stone-800 rounded-xl border border-amber-600 flex justify-between items-center transition text-left">
                     <div>
@@ -352,522 +305,522 @@
     </div>
 
     <script>
-                // --- BANKROLL LOCALSTORAGE SYNC ENGINE ---
-                let balance = 1000.00;
+        // --- BANKROLL LOCALSTORAGE SYNC ENGINE ---
+        let balance = 1000.00;
 
-                function loadBankroll() {
-                    const saved = localStorage.getItem('bankroll');
-                    if (saved !== null && !isNaN(parseFloat(saved))) {
-                        balance = parseFloat(saved);
-                    } else {
-                        balance = 1000.00;
-                        localStorage.setItem('bankroll', balance.toFixed(2));
-                    }
+        function loadBankroll() {
+            const saved = localStorage.getItem('bankroll');
+            if (saved !== null && !isNaN(parseFloat(saved))) {
+                balance = parseFloat(saved);
+            } else {
+                balance = 1000.00;
+                localStorage.setItem('bankroll', balance.toFixed(2));
+            }
+            updateUI();
+        }
+
+        function saveBankroll(val) {
+            balance = Math.max(0, val);
+            localStorage.setItem('bankroll', balance.toFixed(2));
+            updateUI();
+        }
+
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'bankroll') {
+                const val = parseFloat(event.newValue);
+                if (!isNaN(val)) {
+                    balance = val;
                     updateUI();
                 }
+            }
+        });
 
-                function saveBankroll(val) {
-                    balance = Math.max(0, val);
-                    localStorage.setItem('bankroll', balance.toFixed(2));
-                    updateUI();
+        /* Web Audio Sound Engine */
+        class SoundEngine {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
                 }
+            }
 
-                window.addEventListener('storage', (event) => {
-                    if (event.key === 'bankroll') {
-                        const val = parseFloat(event.newValue);
-                        if (!isNaN(val)) {
-                            balance = val;
-                            updateUI();
-                        }
-                    }
-                });
+            playPop(freq = 200, delay = 0) {
+                if (this.muted || !this.ctx) return;
+                setTimeout(() => {
+                    try {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.07);
+                        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+                        gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.07);
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start();
+                        osc.stop(this.ctx.currentTime + 0.07);
+                    } catch(e) {}
+                }, delay);
+            }
 
-                /* Web Audio Sound Engine */
-                class SoundEngine {
-                    constructor() {
-                        this.ctx = null;
-                        this.muted = false;
-                    }
-
-                    init() {
-                        if (!this.ctx) {
-                            const AudioContext = window.AudioContext || window.webkitAudioContext;
-                            this.ctx = new AudioContext();
-                        }
-                    }
-
-                    playPop(freq = 200, delay = 0) {
-                        if (this.muted || !this.ctx) return;
-                        setTimeout(() => {
-                            try {
-                                const osc = this.ctx.createOscillator();
-                                const gain = this.ctx.createGain();
-                                osc.type = 'sine';
-                                osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-                                osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.07);
-                                gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-                                gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.07);
-                                osc.connect(gain);
-                                gain.connect(this.ctx.destination);
-                                osc.start();
-                                osc.stop(this.ctx.currentTime + 0.07);
-                            } catch(e) {}
-                        }, delay);
-                    }
-
-                    playWin() {
-                        if (this.muted || !this.ctx) return;
-                        const notes = [261.63, 329.63, 392.00, 523.25];
-                        notes.forEach((freq, idx) => {
-                            setTimeout(() => {
-                                try {
-                                    const osc = this.ctx.createOscillator();
-                                    const gain = this.ctx.createGain();
-                                    osc.type = 'triangle';
-                                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-                                    gain.gain.setValueAtTime(0.09, this.ctx.currentTime);
-                                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
-                                    osc.connect(gain);
-                                    gain.connect(this.ctx.destination);
-                                    osc.start();
-                                    osc.stop(this.ctx.currentTime + 0.22);
-                                } catch(e) {}
-                            }, idx * 50);
-                        });
-                    }
-
-                    playRainbow() {
-                        if (this.muted || !this.ctx) return;
+            playWin() {
+                if (this.muted || !this.ctx) return;
+                const notes = [261.63, 329.63, 392.00, 523.25];
+                notes.forEach((freq, idx) => {
+                    setTimeout(() => {
                         try {
                             const osc = this.ctx.createOscillator();
                             const gain = this.ctx.createGain();
-                            osc.type = 'sine';
-                            osc.frequency.setValueAtTime(200, this.ctx.currentTime);
-                            osc.frequency.exponentialRampToValueAtTime(900, this.ctx.currentTime + 0.45);
-                            gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
-                            gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
+                            osc.type = 'triangle';
+                            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+                            gain.gain.setValueAtTime(0.09, this.ctx.currentTime);
+                            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
                             osc.connect(gain);
                             gain.connect(this.ctx.destination);
                             osc.start();
-                            osc.stop(this.ctx.currentTime + 0.45);
+                            osc.stop(this.ctx.currentTime + 0.22);
                         } catch(e) {}
-                    }
+                    }, idx * 50);
+                });
+            }
 
-                    playCollectorAbsorb() {
-                        if (this.muted || !this.ctx) return;
-                        try {
-                            const osc = this.ctx.createOscillator();
-                            const gain = this.ctx.createGain();
-                            osc.type = 'sawtooth';
-                            osc.frequency.setValueAtTime(120, this.ctx.currentTime);
-                            osc.frequency.exponentialRampToValueAtTime(700, this.ctx.currentTime + 0.4);
-                            gain.gain.setValueAtTime(0.14, this.ctx.currentTime);
-                            gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
-                            osc.connect(gain);
-                            gain.connect(this.ctx.destination);
-                            osc.start();
-                            osc.stop(this.ctx.currentTime + 0.4);
-                        } catch(e) {}
-                    }
+            playRainbow() {
+                if (this.muted || !this.ctx) return;
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(200, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(900, this.ctx.currentTime + 0.45);
+                    gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.45);
+                } catch(e) {}
+            }
+
+            playCollectorAbsorb() {
+                if (this.muted || !this.ctx) return;
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(120, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(700, this.ctx.currentTime + 0.4);
+                    gain.gain.setValueAtTime(0.14, this.ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.4);
+                } catch(e) {}
+            }
+        }
+
+        const sound = new SoundEngine();
+
+        const SYMBOLS = {
+            BAGUETTE: { id: 'baguette', icon: '🥖', pay: [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5] },
+            CHEESE: { id: 'cheese', icon: '🧀', pay: [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5] },
+            BEER: { id: 'beer', icon: '🍺', pay: [0,0,0,0,0, 0.15, 0.3, 0.6, 1.2, 2.5] },
+            HAT: { id: 'hat', icon: '🎩', pay: [0,0,0,0,0, 0.25, 0.5, 1.0, 2.5, 5.0] },
+            POT: { id: 'pot', icon: '🪴', pay: [0,0,0,0,0, 0.4, 0.8, 1.8, 4.0, 10.0] },
+            WILD: { id: 'wild', icon: '🃏', isWild: true },
+            RAINBOW: { id: 'rainbow', icon: '🌈', isSpecial: true },
+            SCATTER: { id: 'scatter', icon: '📸', isScatter: true },
+            COLLECTOR: { id: 'collector', icon: '🏺', isCollector: true },
+            CLOVER: { id: 'clover', icon: '☘️', isClover: true }
+        };
+
+        const REGULAR_KEYS = ['BAGUETTE', 'CHEESE', 'BEER', 'HAT', 'POT'];
+
+        const betLevels = [0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00];
+        let currentBetIdx = 2;
+        let bet = betLevels[currentBetIdx];
+
+        let grid = Array(25).fill(null);
+        let goldenSquares = Array(25).fill(false);
+        let isSpinning = false;
+        let autoPlay = false;
+        let turbo = false;
+        let freeSpins = 0;
+        let isPersistentFS = false;
+        let totalWinThisSpin = 0;
+        let totalBonusWin = 0; // Kumulierter Gewinn im Bonus
+
+        // DOM Elements
+        const gridEl = document.getElementById('slotGrid');
+        const balanceDisplay = document.getElementById('balanceDisplay');
+        const winDisplay = document.getElementById('winDisplay');
+        const betDisplay = document.getElementById('betDisplay');
+        const statusText = document.getElementById('statusText');
+        const spinBtn = document.getElementById('spinBtn');
+        const betUpBtn = document.getElementById('betUp');
+        const betDownBtn = document.getElementById('betDown');
+        const autoBtn = document.getElementById('autoBtn');
+        const turboBtn = document.getElementById('turboBtn');
+        const soundToggle = document.getElementById('soundToggle');
+        const soundIcon = document.getElementById('soundIcon');
+        const infoBtn = document.getElementById('infoBtn');
+        const infoModal = document.getElementById('infoModal');
+        const closeInfo = document.getElementById('closeInfo');
+        const bonusBuyBtn = document.getElementById('bonusBuyBtn');
+        const bonusBuyModal = document.getElementById('bonusBuyModal');
+        const closeBonusBuy = document.getElementById('closeBonusBuy');
+        const buyStandardFS = document.getElementById('buyStandardFS');
+        const buySuperFS = document.getElementById('buySuperFS');
+        const priceStandardFS = document.getElementById('priceStandardFS');
+        const priceSuperFS = document.getElementById('priceSuperFS');
+        const freeSpinBadge = document.getElementById('freeSpinBadge');
+        const fsTypeBadge = document.getElementById('fsTypeBadge');
+        const fsCountEl = document.getElementById('fsCount');
+        const bigWinOverlay = document.getElementById('bigWinOverlay');
+        const bigWinTitle = document.getElementById('bigWinTitle');
+        const bigWinAmount = document.getElementById('bigWinAmount');
+        const bigWinIcon = document.getElementById('bigWinIcon');
+
+        function initGridDOM() {
+            gridEl.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell bg-stone-900/90 border border-stone-800/80 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-game relative overflow-hidden transition-colors duration-300';
+                cell.dataset.index = i;
+                gridEl.appendChild(cell);
+            }
+        }
+
+        function updateUI() {
+            balanceDisplay.textContent = balance.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+            winDisplay.textContent = totalWinThisSpin.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+            betDisplay.textContent = bet.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+            priceStandardFS.textContent = (bet * 100).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+            priceSuperFS.textContent = (bet * 250).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+
+            if (freeSpins > 0) {
+                freeSpinBadge.classList.remove('hidden');
+                fsCountEl.textContent = freeSpins;
+                if (isPersistentFS) {
+                    fsTypeBadge.classList.remove('hidden');
+                } else {
+                    fsTypeBadge.classList.add('hidden');
+                }
+            } else {
+                freeSpinBadge.classList.add('hidden');
+                fsTypeBadge.classList.add('hidden');
+            }
+        }
+
+        function getRandomSymbol() {
+            const rand = Math.random();
+            // EXACT 0.1% Chance (0.001 probability)
+            if (rand < 0.001) return { ...SYMBOLS.RAINBOW };
+            if (rand < 0.013) return { ...SYMBOLS.SCATTER };
+            if (rand < 0.048) return { ...SYMBOLS.WILD };
+            
+            const key = REGULAR_KEYS[Math.floor(Math.random() * REGULAR_KEYS.length)];
+            return { ...SYMBOLS[key] };
+        }
+
+        function renderGrid(staggerDelay = false) {
+            const cells = gridEl.children;
+            for (let i = 0; i < 25; i++) {
+                const cell = cells[i];
+                const sym = grid[i];
+
+                if (goldenSquares[i]) {
+                    cell.classList.add('golden-square');
+                } else {
+                    cell.classList.remove('golden-square');
                 }
 
-                const sound = new SoundEngine();
-
-                const SYMBOLS = {
-                    BAGUETTE: { id: 'baguette', icon: '🥖', pay: [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5] },
-                    CHEESE: { id: 'cheese', icon: '🧀', pay: [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5] },
-                    BEER: { id: 'beer', icon: '🍺', pay: [0,0,0,0,0, 0.15, 0.3, 0.6, 1.2, 2.5] },
-                    HAT: { id: 'hat', icon: '🎩', pay: [0,0,0,0,0, 0.25, 0.5, 1.0, 2.5, 5.0] },
-                    POT: { id: 'pot', icon: '🦧', pay: [0,0,0,0,0, 0.4, 0.8, 1.8, 4.0, 10.0] },
-                    WILD: { id: 'wild', icon: '🃏', isWild: true },
-                    RAINBOW: { id: 'rainbow', icon: '🌈', isSpecial: true },
-                    SCATTER: { id: 'scatter', icon: '📸', isScatter: true },
-                    COLLECTOR: { id: 'collector', icon: '🏺', isCollector: true },
-                    CLOVER: { id: 'clover', icon: '☘️', isClover: true }
-                };
-                const REGULAR_KEYS = ['BAGUETTE', 'CHEESE', 'BEER', 'HAT', 'POT'];
-
-                const betLevels = [0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00];
-                let currentBetIdx = 2;
-                let bet = betLevels[currentBetIdx];
-
-                let grid = Array(25).fill(null);
-                let goldenSquares = Array(25).fill(false);
-                let isSpinning = false;
-                let autoPlay = false;
-                let turbo = false;
-                let freeSpins = 0;
-                let isPersistentFS = false;
-                let totalWinThisSpin = 0;
-                let totalBonusWin = 0; // Kumulierter Gewinn im Bonus
-
-                // DOM Elements
-                const gridEl = document.getElementById('slotGrid');
-                const balanceDisplay = document.getElementById('balanceDisplay');
-                const winDisplay = document.getElementById('winDisplay');
-                const betDisplay = document.getElementById('betDisplay');
-                const statusText = document.getElementById('statusText');
-                const spinBtn = document.getElementById('spinBtn');
-                const betUpBtn = document.getElementById('betUp');
-                const betDownBtn = document.getElementById('betDown');
-                const autoBtn = document.getElementById('autoBtn');
-                const turboBtn = document.getElementById('turboBtn');
-                const soundToggle = document.getElementById('soundToggle');
-                const soundIcon = document.getElementById('soundIcon');
-                const infoBtn = document.getElementById('infoBtn');
-                const infoModal = document.getElementById('infoModal');
-                const closeInfo = document.getElementById('closeInfo');
-                const bonusBuyBtn = document.getElementById('bonusBuyBtn');
-                const bonusBuyModal = document.getElementById('bonusBuyModal');
-                const closeBonusBuy = document.getElementById('closeBonusBuy');
-                const buyStandardFS = document.getElementById('buyStandardFS');
-                const buySuperFS = document.getElementById('buySuperFS');
-                const priceStandardFS = document.getElementById('priceStandardFS');
-                const priceSuperFS = document.getElementById('priceSuperFS');
-                const freeSpinBadge = document.getElementById('freeSpinBadge');
-                const fsTypeBadge = document.getElementById('fsTypeBadge');
-                const fsCountEl = document.getElementById('fsCount');
-                const bigWinOverlay = document.getElementById('bigWinOverlay');
-                const bigWinTitle = document.getElementById('bigWinTitle');
-                const bigWinAmount = document.getElementById('bigWinAmount');
-                const bigWinIcon = document.getElementById('bigWinIcon');
-
-                function initGridDOM() {
-                    gridEl.innerHTML = '';
-                    for (let i = 0; i < 25; i++) {
-                        const cell = document.createElement('div');
-                        cell.className = 'cell bg-stone-900/90 border border-stone-800/80 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-game relative overflow-hidden transition-colors duration-300';
-                        cell.dataset.index = i;
-                        gridEl.appendChild(cell);
+                cell.innerHTML = '';
+                if (sym) {
+                    const col = i % 5;
+                    const delay = staggerDelay ? col * (turbo ? 20 : 45) : 0;
+                    
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'symbol-item flex flex-col items-center justify-center w-full h-full animate-drop';
+                    wrapper.style.animationDelay = `${delay}ms`;
+                    
+                    let html = `<span>${sym.icon || ''}</span>`;
+                    if (sym.value !== undefined) {
+                        html += `<span class="absolute bottom-1 right-1 text-[9px] font-sans bg-black/80 px-1 rounded border border-amber-500/50 text-amber-300 font-bold animate-coin">${sym.value}x</span>`;
+                    } else if (sym.mult !== undefined) {
+                        html += `<span class="absolute bottom-1 right-1 text-[9px] font-sans bg-emerald-950 px-1 rounded border border-emerald-400 text-emerald-300 font-bold animate-coin">x${sym.mult}</span>`;
                     }
+                    wrapper.innerHTML = html;
+                    cell.appendChild(wrapper);
+
+                    if (staggerDelay) sound.playPop(180 + (i % 5) * 20, delay);
                 }
+            }
+        }
 
-                function updateUI() {
-                    balanceDisplay.textContent = balance.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    winDisplay.textContent = totalWinThisSpin.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    betDisplay.textContent = bet.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    priceStandardFS.textContent = (bet * 100).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    priceSuperFS.textContent = (bet * 250).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+        function findClusters() {
+            const visited = Array(25).fill(false);
+            const clusters = [];
 
-                    if (freeSpins > 0) {
-                        freeSpinBadge.classList.remove('hidden');
-                        fsCountEl.textContent = freeSpins;
-                        if (isPersistentFS) {
-                            fsTypeBadge.classList.remove('hidden');
-                        } else {
-                            fsTypeBadge.classList.add('hidden');
-                        }
-                    } else {
-                        freeSpinBadge.classList.add('hidden');
-                        fsTypeBadge.classList.add('hidden');
-                    }
-                }
+            for (let i = 0; i < 25; i++) {
+                if (visited[i] || !grid[i] || grid[i].isSpecial || grid[i].isScatter) continue;
 
-                function getRandomSymbol() {
-                    const rand = Math.random();
-                    // EXACT 0.1% Chance (0.001 probability)
-                    if (rand < 0.001) return { ...SYMBOLS.RAINBOW };
-                    if (rand < 0.013) return { ...SYMBOLS.SCATTER };
-                    if (rand < 0.048) return { ...SYMBOLS.WILD };
+                const targetSym = grid[i].isWild ? null : grid[i].id;
+                const cluster = [];
+                const queue = [i];
+                visited[i] = true;
 
-                    const key = REGULAR_KEYS[Math.floor(Math.random() * REGULAR_KEYS.length)];
-                    return { ...SYMBOLS[key] };
-                }
+                while (queue.length > 0) {
+                    const idx = queue.shift();
+                    cluster.push(idx);
 
-                function renderGrid(staggerDelay = false) {
-                    const cells = gridEl.children;
-                    for (let i = 0; i < 25; i++) {
-                        const cell = cells[i];
-                        const sym = grid[i];
+                    const row = Math.floor(idx / 5);
+                    const col = idx % 5;
+                    const neighbors = [];
 
-                        if (goldenSquares[i]) {
-                            cell.classList.add('golden-square');
-                        } else {
-                            cell.classList.remove('golden-square');
-                        }
+                    if (row > 0) neighbors.push(idx - 5);
+                    if (row < 4) neighbors.push(idx + 5);
+                    if (col > 0) neighbors.push(idx - 1);
+                    if (col < 4) neighbors.push(idx + 1);
 
-                        cell.innerHTML = '';
-                        if (sym) {
-                            const col = i % 5;
-                            const delay = staggerDelay ? col * (turbo ? 20 : 45) : 0;
-
-                            const wrapper = document.createElement('div');
-                            wrapper.className = 'symbol-item flex flex-col items-center justify-center w-full h-full animate-drop';
-                            wrapper.style.animationDelay = `${delay}ms`;
-
-                            let html = `<span>${sym.icon || ''}</span>`;
-                            if (sym.value !== undefined) {
-                                html += `<span class="absolute bottom-1 right-1 text-[9px] font-sans bg-black/80 px-1 rounded border border-amber-500/50 text-amber-300 font-bold animate-coin">${sym.value}x</span>`;
-                            } else if (sym.mult !== undefined) {
-                                html += `<span class="absolute bottom-1 right-1 text-[9px] font-sans bg-emerald-950 px-1 rounded border border-emerald-400 text-emerald-300 font-bold animate-coin">x${sym.mult}</span>`;
-                            }
-                            wrapper.innerHTML = html;
-                            cell.appendChild(wrapper);
-
-                            if (staggerDelay) sound.playPop(180 + (i % 5) * 20, delay);
-                        }
-                    }
-                }
-
-                function findClusters() {
-                    const visited = Array(25).fill(false);
-                    const clusters = [];
-
-                    for (let i = 0; i < 25; i++) {
-                        if (visited[i] || !grid[i] || grid[i].isSpecial || grid[i].isScatter) continue;
-
-                        const targetSym = grid[i].isWild ? null : grid[i].id;
-                        const cluster = [];
-                        const queue = [i];
-                        visited[i] = true;
-
-                        while (queue.length > 0) {
-                            const idx = queue.shift();
-                            cluster.push(idx);
-
-                            const row = Math.floor(idx / 5);
-                            const col = idx % 5;
-                            const neighbors = [];
-
-                            if (row > 0) neighbors.push(idx - 5);
-                            if (row < 4) neighbors.push(idx + 5);
-                            if (col > 0) neighbors.push(idx - 1);
-                            if (col < 4) neighbors.push(idx + 1);
-
-                            for (const nIdx of neighbors) {
-                                if (!visited[nIdx] && grid[nIdx] && !grid[nIdx].isSpecial && !grid[nIdx].isScatter) {
-                                    const nSym = grid[nIdx];
-                                    if (nSym.isWild || targetSym === null || nSym.id === targetSym) {
-                                        visited[nIdx] = true;
-                                        queue.push(nIdx);
-                                    }
-                                }
-                            }
-                        }
-
-                        if (cluster.length >= 5) {
-                            clusters.push(cluster);
-                        }
-                    }
-
-                    return clusters;
-                }
-
-                async function executeSpin() {
-                    if (isSpinning) return;
-                    sound.init();
-
-                    if (freeSpins === 0) {
-                        if (balance < bet) {
-                            alert("Nicht genügend Guthaben!");
-                            autoPlay = false;
-                            autoBtn.classList.remove('bg-amber-600', 'text-stone-950');
-                            return;
-                        }
-                        saveBankroll(balance - bet);
-                        goldenSquares.fill(false); // Zurücksetzen für normalen Spin
-                    } else {
-                        freeSpins--;
-                    }
-
-                    isSpinning = true;
-                    spinBtn.disabled = true;
-                    totalWinThisSpin = 0;
-                    updateUI();
-
-                    grid = Array.from({ length: 25 }, () => getRandomSymbol());
-                    renderGrid(true);
-
-                    await new Promise(r => setTimeout(r, turbo ? 300 : 550));
-
-                    // Cluster Pay Auswertung
-                    const clusters = findClusters();
-                    let spinWin = 0;
-
-                    if (clusters.length > 0) {
-                        sound.playWin();
-                        for (const cluster of clusters) {
-                            const firstSym = grid[cluster[0]];
-                            const symKey = firstSym.id ? firstSym.id.toUpperCase() : 'BAGUETTE';
-                            const payoutArr = SYMBOLS[symKey]?.pay || [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5];
-                            const multiplier = payoutArr[Math.min(cluster.length, payoutArr.length - 1)] || 0.1;
-                            spinWin += bet * multiplier;
-
-                            cluster.forEach(idx => {
-                                goldenSquares[idx] = true;
-                                gridEl.children[idx].classList.add('golden-square');
-                                gridEl.children[idx].querySelector('.symbol-item')?.classList.add('symbol-win');
-                            });
-                        }
-                    }
-
-                    // Regenbogen Aktivierung
-                    const hasRainbow = grid.some(s => s && s.isSpecial);
-                    if (hasRainbow && goldenSquares.includes(true)) {
-                        sound.playRainbow();
-                        statusText.textContent = "🌈 REGENBOGEN AKTIV! Enthülle Goldene Quadrate...";
-                        await new Promise(r => setTimeout(r, 600));
-
-                        let coinSum = 0;
-                        let collectorIdx = -1;
-                        let coinMap = {};
-
-                        for (let i = 0; i < 25; i++) {
-                            if (goldenSquares[i]) {
-                                const rand = Math.random();
-                                if (rand < 0.05) {
-                                    collectorIdx = i;
-                                    grid[i] = { ...SYMBOLS.COLLECTOR };
-                                } else if (rand < 0.20) {
-                                    grid[i] = { ...SYMBOLS.CLOVER, mult: [2, 3, 5, 10][Math.floor(Math.random() * 4)] };
-                                } else {
-                                    let val = 1;
-                                    const cRand = Math.random();
-                                    if (cRand < 0.6) val = [0.2, 0.5, 1, 2, 5][Math.floor(Math.random() * 5)];
-                                    else if (cRand < 0.9) val = [10, 15, 20][Math.floor(Math.random() * 3)];
-                                    else val = [25, 50, 75, 100][Math.floor(Math.random() * 4)]; // MAX 100x CAP
-
-                                    coinMap[i] = bet * val;
-                                    grid[i] = { icon: '🪙', value: val };
-                                }
+                    for (const nIdx of neighbors) {
+                        if (!visited[nIdx] && grid[nIdx] && !grid[nIdx].isSpecial && !grid[nIdx].isScatter) {
+                            const nSym = grid[nIdx];
+                            if (nSym.isWild || targetSym === null || nSym.id === targetSym) {
+                                visited[nIdx] = true;
+                                queue.push(nIdx);
                             }
                         }
-                        renderGrid(false);
-                        await new Promise(r => setTimeout(r, 700));
-
-                        if (collectorIdx !== -1) {
-                            sound.playCollectorAbsorb();
-                            gridEl.children[collectorIdx]?.classList.add('animate-collector');
-                            const sum = Object.values(coinMap).reduce((a, b) => a + b, 0);
-                            coinSum = sum * 2;
-                        } else {
-                            coinSum = Object.values(coinMap).reduce((a, b) => a + b, 0);
-                        }
-
-                        spinWin += coinSum;
-                    }
-
-                    // Scatter / Freispiel Check
-                    const scatters = grid.filter(s => s && s.isScatter).length;
-                    if (scatters >= 3) {
-                        const addedFs = scatters >= 4 ? 12 : 8;
-                        freeSpins += addedFs;
-                        if (scatters >= 4) isPersistentFS = true;
-                        alert(`🎉 ${scatters} Scatters! ${addedFs} Freispiele erhalten!`);
-                    }
-
-                    if (spinWin > 0) {
-                        totalWinThisSpin = spinWin;
-                        totalBonusWin += spinWin; // Addiere Gewinn zum Gesamt-Bonusgewinn
-                        saveBankroll(balance + spinWin);
-
-                        if (spinWin >= bet * 50 && freeSpins === 0) {
-                            bigWinIcon.textContent = "🎉🦝💰";
-                            bigWinTitle.textContent = "BIG WIN!";
-                            bigWinAmount.textContent = spinWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
-                            bigWinOverlay.classList.remove('hidden');
-                            setTimeout(() => bigWinOverlay.classList.add('hidden'), 2500);
-                        }
-                    }
-
-                    isSpinning = false;
-                    spinBtn.disabled = false;
-                    updateUI();
-
-                    // Prüfen, ob Freispiele gerade BEENDET wurden
-                    if (freeSpins === 0 && totalBonusWin > 0) {
-                        // Finale Bonus-Gewinn Anzeige
-                        bigWinIcon.textContent = "📸🦝🏆";
-                        bigWinTitle.textContent = "BONUS TOTAL WIN!";
-                        bigWinAmount.textContent = totalBonusWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
-                        bigWinOverlay.classList.remove('hidden');
-
-                        // Feldraster vollständig bereinigen
-                        goldenSquares.fill(false);
-                        isPersistentFS = false;
-                        renderGrid(false);
-
-                        setTimeout(() => {
-                            bigWinOverlay.classList.add('hidden');
-                            totalBonusWin = 0; // Reset für nächste Runde
-                        }, 3500);
-                    }
-
-                    if (autoPlay || freeSpins > 0) {
-                        setTimeout(executeSpin, turbo ? 200 : 800);
                     }
                 }
 
-                // EVENT LISTENERS
-                spinBtn.addEventListener('click', executeSpin);
+                if (cluster.length >= 5) {
+                    clusters.push(cluster);
+                }
+            }
 
-                betUpBtn.addEventListener('click', () => {
-                    if (currentBetIdx < betLevels.length - 1) {
-                        currentBetIdx++;
-                        bet = betLevels[currentBetIdx];
-                        updateUI();
+            return clusters;
+        }
+
+        async function executeSpin() {
+            if (isSpinning) return;
+            sound.init();
+
+            if (freeSpins === 0) {
+                if (balance < bet) {
+                    alert("Nicht genügend Guthaben!");
+                    autoPlay = false;
+                    autoBtn.classList.remove('bg-amber-600', 'text-stone-950');
+                    return;
+                }
+                saveBankroll(balance - bet);
+                goldenSquares.fill(false); // Zurücksetzen für normalen Spin
+            } else {
+                freeSpins--;
+            }
+
+            isSpinning = true;
+            spinBtn.disabled = true;
+            totalWinThisSpin = 0;
+            updateUI();
+
+            grid = Array.from({ length: 25 }, () => getRandomSymbol());
+            renderGrid(true);
+
+            await new Promise(r => setTimeout(r, turbo ? 300 : 550));
+
+            // Cluster Pay Auswertung
+            const clusters = findClusters();
+            let spinWin = 0;
+
+            if (clusters.length > 0) {
+                sound.playWin();
+                for (const cluster of clusters) {
+                    const firstSym = grid[cluster[0]];
+                    const symKey = firstSym.id ? firstSym.id.toUpperCase() : 'BAGUETTE';
+                    const payoutArr = SYMBOLS[symKey]?.pay || [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5];
+                    const multiplier = payoutArr[Math.min(cluster.length, payoutArr.length - 1)] || 0.1;
+                    spinWin += bet * multiplier;
+
+                    cluster.forEach(idx => {
+                        goldenSquares[idx] = true;
+                        gridEl.children[idx].classList.add('golden-square');
+                        gridEl.children[idx].querySelector('.symbol-item')?.classList.add('symbol-win');
+                    });
+                }
+            }
+
+            // Regenbogen Aktivierung
+            const hasRainbow = grid.some(s => s && s.isSpecial);
+            if (hasRainbow && goldenSquares.includes(true)) {
+                sound.playRainbow();
+                statusText.textContent = "🌈 REGENBOGEN AKTIV! Enthülle Goldene Quadrate...";
+                await new Promise(r => setTimeout(r, 600));
+
+                let coinSum = 0;
+                let collectorIdx = -1;
+                let coinMap = {};
+
+                for (let i = 0; i < 25; i++) {
+                    if (goldenSquares[i]) {
+                        const rand = Math.random();
+                        if (rand < 0.05) {
+                            collectorIdx = i;
+                            grid[i] = { ...SYMBOLS.COLLECTOR };
+                        } else if (rand < 0.20) {
+                            grid[i] = { ...SYMBOLS.CLOVER, mult: [2, 3, 5, 10][Math.floor(Math.random() * 4)] };
+                        } else {
+                            let val = 1;
+                            const cRand = Math.random();
+                            if (cRand < 0.6) val = [0.2, 0.5, 1, 2, 5][Math.floor(Math.random() * 5)];
+                            else if (cRand < 0.9) val = [10, 15, 20][Math.floor(Math.random() * 3)];
+                            else val = [25, 50, 75, 100][Math.floor(Math.random() * 4)]; // MAX 100x CAP
+                            
+                            coinMap[i] = bet * val;
+                            grid[i] = { icon: '🪙', value: val };
+                        }
                     }
-                });
+                }
+                renderGrid(false);
+                await new Promise(r => setTimeout(r, 700));
 
-                betDownBtn.addEventListener('click', () => {
-                    if (currentBetIdx > 0) {
-                        currentBetIdx--;
-                        bet = betLevels[currentBetIdx];
-                        updateUI();
-                    }
-                });
+                if (collectorIdx !== -1) {
+                    sound.playCollectorAbsorb();
+                    gridEl.children[collectorIdx]?.classList.add('animate-collector');
+                    const sum = Object.values(coinMap).reduce((a, b) => a + b, 0);
+                    coinSum = sum * 2;
+                } else {
+                    coinSum = Object.values(coinMap).reduce((a, b) => a + b, 0);
+                }
 
-                autoBtn.addEventListener('click', () => {
-                    autoPlay = !autoPlay;
-                    autoBtn.classList.toggle('bg-amber-600', autoPlay);
-                    autoBtn.classList.toggle('text-stone-950', autoPlay);
-                    if (autoPlay && !isSpinning) executeSpin();
-                });
+                spinWin += coinSum;
+            }
 
-                turboBtn.addEventListener('click', () => {
-                    turbo = !turbo;
-                    turboBtn.classList.toggle('bg-amber-600', turbo);
-                    turboBtn.classList.toggle('text-stone-950', turbo);
-                });
+            // Scatter / Freispiel Check
+            const scatters = grid.filter(s => s && s.isScatter).length;
+            if (scatters >= 3) {
+                const addedFs = scatters >= 4 ? 12 : 8;
+                freeSpins += addedFs;
+                if (scatters >= 4) isPersistentFS = true;
+                alert(`🎉 ${scatters} Scatters! ${addedFs} Freispiele erhalten!`);
+            }
 
-                soundToggle.addEventListener('click', () => {
-                    sound.muted = !sound.muted;
-                    soundIcon.className = sound.muted ? 'fa-solid fa-volume-xmark text-lg text-red-400' : 'fa-solid fa-volume-high text-lg text-amber-400';
-                });
+            if (spinWin > 0) {
+                totalWinThisSpin = spinWin;
+                totalBonusWin += spinWin; // Addiere Gewinn zum Gesamt-Bonusgewinn
+                saveBankroll(balance + spinWin);
 
-                infoBtn.addEventListener('click', () => infoModal.classList.remove('hidden'));
-                closeInfo.addEventListener('click', () => infoModal.classList.add('hidden'));
+                // NUR ANZEIGEN WENN GEWINN GEGENÜBER DEM EINSATZ > 100x IST (UND KEIN FREISPIEL-ENDE)
+                if (spinWin >= bet * 100 && freeSpins === 0) {
+                    bigWinIcon.textContent = "🎉🦝💰";
+                    bigWinTitle.textContent = "MEGA WIN!";
+                    bigWinAmount.textContent = spinWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
+                    bigWinOverlay.classList.remove('hidden');
+                    setTimeout(() => bigWinOverlay.classList.add('hidden'), 2500);
+                }
+            }
 
-                bonusBuyBtn.addEventListener('click', () => bonusBuyModal.classList.remove('hidden'));
-                closeBonusBuy.addEventListener('click', () => bonusBuyModal.classList.add('hidden'));
+            isSpinning = false;
+            spinBtn.disabled = false;
+            updateUI();
 
-                buyStandardFS.addEventListener('click', () => {
-                    const cost = bet * 100;
-                    if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
-                    saveBankroll(balance - cost);
-                    freeSpins = 8;
-                    isPersistentFS = false;
-                    totalBonusWin = 0;
-                    goldenSquares.fill(false);
-                    bonusBuyModal.classList.add('hidden');
-                    executeSpin();
-                });
+            // Prüfen, ob Freispiele gerade BEENDET wurden -> JETZT DEN GESAMTGEWINN ANZEIGEN
+            if (freeSpins === 0 && totalBonusWin > 0) {
+                bigWinIcon.textContent = "📸🦝🏆";
+                bigWinTitle.textContent = "BONUS TOTAL WIN!";
+                bigWinAmount.textContent = totalBonusWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
+                bigWinOverlay.classList.remove('hidden');
+                
+                // Feldraster vollständig bereinigen & zurücksetzen
+                goldenSquares.fill(false);
+                isPersistentFS = false;
+                renderGrid(false);
 
-                buySuperFS.addEventListener('click', () => {
-                    const cost = bet * 250;
-                    if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
-                    saveBankroll(balance - cost);
-                    freeSpins = 12;
-                    isPersistentFS = true;
-                    totalBonusWin = 0;
-                    goldenSquares.fill(false);
-                    bonusBuyModal.classList.add('hidden');
-                    executeSpin();
-                });
+                await new Promise(r => setTimeout(r, 3500));
+                bigWinOverlay.classList.add('hidden');
+                totalBonusWin = 0; // Reset für den nächsten Bonus
+            }
 
-                // INIT ON LOAD
-                initGridDOM();
-                loadBankroll();
+            if (autoPlay || freeSpins > 0) {
+                setTimeout(executeSpin, turbo ? 200 : 800);
+            }
+        }
+
+        // EVENT LISTENERS
+        spinBtn.addEventListener('click', executeSpin);
+
+        betUpBtn.addEventListener('click', () => {
+            if (currentBetIdx < betLevels.length - 1) {
+                currentBetIdx++;
+                bet = betLevels[currentBetIdx];
+                updateUI();
+            }
+        });
+
+        betDownBtn.addEventListener('click', () => {
+            if (currentBetIdx > 0) {
+                currentBetIdx--;
+                bet = betLevels[currentBetIdx];
+                updateUI();
+            }
+        });
+
+        autoBtn.addEventListener('click', () => {
+            autoPlay = !autoPlay;
+            autoBtn.classList.toggle('bg-amber-600', autoPlay);
+            autoBtn.classList.toggle('text-stone-950', autoPlay);
+            if (autoPlay && !isSpinning) executeSpin();
+        });
+
+        turboBtn.addEventListener('click', () => {
+            turbo = !turbo;
+            turboBtn.classList.toggle('bg-amber-600', turbo);
+            turboBtn.classList.toggle('text-stone-950', turbo);
+        });
+
+        soundToggle.addEventListener('click', () => {
+            sound.muted = !sound.muted;
+            soundIcon.className = sound.muted ? 'fa-solid fa-volume-xmark text-lg text-red-400' : 'fa-solid fa-volume-high text-lg text-amber-400';
+        });
+
+        infoBtn.addEventListener('click', () => infoModal.classList.remove('hidden'));
+        closeInfo.addEventListener('click', () => infoModal.classList.add('hidden'));
+
+        bonusBuyBtn.addEventListener('click', () => bonusBuyModal.classList.remove('hidden'));
+        closeBonusBuy.addEventListener('click', () => bonusBuyModal.classList.add('hidden'));
+
+        buyStandardFS.addEventListener('click', () => {
+            const cost = bet * 100;
+            if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
+            saveBankroll(balance - cost);
+            freeSpins = 8;
+            isPersistentFS = false;
+            totalBonusWin = 0;
+            goldenSquares.fill(false);
+            bonusBuyModal.classList.add('hidden');
+            executeSpin();
+        });
+
+        buySuperFS.addEventListener('click', () => {
+            const cost = bet * 250;
+            if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
+            saveBankroll(balance - cost);
+            freeSpins = 12;
+            isPersistentFS = true;
+            totalBonusWin = 0;
+            goldenSquares.fill(false);
+            bonusBuyModal.classList.add('hidden');
+            executeSpin();
+        });
+
+        // INIT ON LOAD
+        initGridDOM();
+        loadBankroll();
     </script>
 </body>
 </html>
