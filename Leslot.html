@@ -762,7 +762,7 @@
                         saveBankroll(balance + spinWin);
 
                         // NUR ANZEIGEN AB 10.000% (100x des Einsatzes) IM BASISSPIEL
-                        if (spinWin >= bet * 50 && freeSpins === 0) {
+                        if (spinWin >= bet * 100 && freeSpins === 0) {
                             bigWinIcon.textContent = "🎉🦝💰";
                             bigWinTitle.textContent = "MEGA WIN!";
                             bigWinAmount.textContent = spinWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
@@ -776,7 +776,7 @@
                     updateUI();
 
                     // ANZEIGE AM ENDE DER FREISPIELE
-                    if (freeSpins === 0 && totalBonusWin >= currentBetIdx * 50) {
+                    if (freeSpins === 0 && totalBonusWin >= currentBetIdx * 100) {
                         bigWinIcon.textContent = "📸🦝🏆";
                         bigWinTitle.textContent = "BONUS TOTAL WIN!";
                         bigWinAmount.textContent = totalBonusWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
