@@ -716,3 +716,114 @@
             if (spinWin > 0) {
                 totalWinThisSpin = spinWin;
                 totalBonusWin += spinWin; // Aufaddieren für das Freispiel-Ende
+                saveBankroll(balance + spinWin);
+
+                // NUR ANZEIGEN WENN DER SPIN-GEWINN 1000% DES EINSATZES (>= 10x) ERREICHT (BEI EINZELSPINS)
+                if (spinWin >= bet * 10 && freeSpins === 0) {
+                    bigWinIcon.textContent = "🎉🦝💰";
+                    bigWinTitle.textContent = "MEGA WIN!";
+                    bigWinAmount.textContent = spinWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
+                    bigWinOverlay.classList.remove('hidden');
+                    setTimeout(() => bigWinOverlay.classList.add('hidden'), 2500);
+                }
+            }
+
+            isSpinning = false;
+            spinBtn.disabled = false;
+            updateUI();
+
+            // FREISPIELE VOLLSTÄNDIG BEENDET -> BONUS-GESAMTGEWINN-OVERLAY ANZEIGEN
+            if (freeSpins === 0 && totalBonusWin > 0) {
+                bigWinIcon.textContent = "📸🦝🏆";
+                bigWinTitle.textContent = "BONUS TOTAL WIN!";
+                bigWinAmount.textContent = totalBonusWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
+                bigWinOverlay.classList.remove('hidden');
+                
+                // Spielfeld aufräumen
+                goldenSquares.fill(false);
+                isPersistentFS = false;
+                renderGrid(false);
+
+                await new Promise(r => setTimeout(r, 3500));
+                bigWinOverlay.classList.add('hidden');
+                totalBonusWin = 0; // Reset für den nächsten Bonus
+            }
+
+            if (autoPlay || freeSpins > 0) {
+                setTimeout(executeSpin, turbo ? 200 : 800);
+            }
+        }
+
+        // EVENT LISTENERS
+        spinBtn.addEventListener('click', executeSpin);
+
+        betUpBtn.addEventListener('click', () => {
+            if (currentBetIdx < betLevels.length - 1) {
+                currentBetIdx++;
+                bet = betLevels[currentBetIdx];
+                updateUI();
+            }
+        });
+
+        betDownBtn.addEventListener('click', () => {
+            if (currentBetIdx > 0) {
+                currentBetIdx--;
+                bet = betLevels[currentBetIdx];
+                updateUI();
+            }
+        });
+
+        autoBtn.addEventListener('click', () => {
+            autoPlay = !autoPlay;
+            autoBtn.classList.toggle('bg-amber-600', autoPlay);
+            autoBtn.classList.toggle('text-stone-950', autoPlay);
+            if (autoPlay && !isSpinning) executeSpin();
+        });
+
+        turboBtn.addEventListener('click', () => {
+            turbo = !turbo;
+            turboBtn.classList.toggle('bg-amber-600', turbo);
+            turboBtn.classList.toggle('text-stone-950', turbo);
+        });
+
+        soundToggle.addEventListener('click', () => {
+            sound.muted = !sound.muted;
+            soundIcon.className = sound.muted ? 'fa-solid fa-volume-xmark text-lg text-red-400' : 'fa-solid fa-volume-high text-lg text-amber-400';
+        });
+
+        infoBtn.addEventListener('click', () => infoModal.classList.remove('hidden'));
+        closeInfo.addEventListener('click', () => infoModal.classList.add('hidden'));
+
+        bonusBuyBtn.addEventListener('click', () => bonusBuyModal.classList.remove('hidden'));
+        closeBonusBuy.addEventListener('click', () => bonusBuyModal.classList.add('hidden'));
+
+        buyStandardFS.addEventListener('click', () => {
+            const cost = bet * 100;
+            if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
+            saveBankroll(balance - cost);
+            freeSpins = 8;
+            isPersistentFS = false;
+            totalBonusWin = 0;
+            goldenSquares.fill(false);
+            bonusBuyModal.classList.add('hidden');
+            executeSpin();
+        });
+
+        buySuperFS.addEventListener('click', () => {
+            const cost = bet * 250;
+            if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
+            saveBankroll(balance - cost);
+            freeSpins = 12;
+            isPersistentFS = true;
+            totalBonusWin = 0;
+            goldenSquares.fill(false);
+            bonusBuyModal.classList.add('hidden');
+            executeSpin();
+        });
+
+        // INIT ON LOAD
+        initGridDOM();
+        loadBankroll();
+    </script>
+</body>
+</html>
