@@ -3,869 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Slots</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>BJWeB - Blackjack Casino</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Plus+Jakarta+Sans:wght@600;800&display=swap');
+        /* Modernes Dark-Casino Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at center, #1b1612 0%, #060504 100%);
-            color: #f3e5ab;
-            user-select: none;
-            touch-action: manipulation;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, #1a2a22 0%, #0d1310 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .font-game {
-            font-family: 'Fredoka One', cursive;
+        .card-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
 
-        /* Golden Squares Effect */
-        .golden-square {
-            background: radial-gradient(circle, rgba(234, 179, 8, 0.45) 0%, rgba(160, 110, 15, 0.25) 100%) !important;
-            border: 2px solid #facc15 !important;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.5) inset, 0 0 10px rgba(234, 179, 8, 0.3);
-            transition: all 0.4s ease;
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            color: #f1c40f; /* Goldener Casino-Look */
+            text-shadow: 0 2px 10px rgba(241, 196, 15, 0.3);
         }
 
-        /* Reel Window Clipping */
-        .grid-container {
-            position: relative;
-            overflow: hidden;
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
         }
 
-        /* Smooth Symbol Drop Animation */
-        .symbol-item {
-            will-change: transform, opacity;
-            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+        /* Styling der Absende-Buttons */
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, #27ae60, #1e8449);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
         }
 
-        @keyframes smoothDrop {
-            0% {
-                transform: translateY(-120%) scaleY(1.15);
-                opacity: 0;
+            input[type="submit"]:hover {
+                background: linear-gradient(135deg, #2ecc71, #27ae60);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5);
             }
 
-            70% {
-                transform: translateY(8%) scaleY(0.92);
-                opacity: 1;
-            }
-
-            85% {
-                transform: translateY(-3%) scaleY(1.03);
-            }
-
-            100% {
-                transform: translateY(0%) scaleY(1);
-                opacity: 1;
-            }
+        /* Alternativer Look für den Optionen-Button */
+        .btn-secondary input[type="submit"] {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .animate-drop {
-            animation: smoothDrop 0.48s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        /* Dissolve / Win Animation */
-        @keyframes winDissolve {
-            0% {
-                transform: scale(1);
-                filter: brightness(1);
+            .btn-secondary input[type="submit"]:hover {
+                background: linear-gradient(135deg, #718096, #4a5568);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             }
-
-            50% {
-                transform: scale(1.2);
-                filter: brightness(1.8) drop-shadow(0 0 14px #f59e0b);
-            }
-
-            100% {
-                transform: scale(1);
-                filter: brightness(1.3) drop-shadow(0 0 8px #fef08a);
-            }
-        }
-
-        .symbol-win {
-            animation: winDissolve 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
-        }
-
-        /* Coin Reveal Animation */
-        @keyframes coinReveal {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-
-            70% {
-                transform: scale(1.2) rotate(10deg);
-            }
-
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-
-        .animate-coin {
-            animation: coinReveal 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        /* Collector Absorbing Pulse Animation */
-        @keyframes collectorPulse {
-            0% {
-                transform: scale(1);
-                filter: brightness(1);
-            }
-
-            50% {
-                transform: scale(1.35) rotate(-5deg);
-                filter: brightness(2) drop-shadow(0 0 20px #ffd700);
-            }
-
-            100% {
-                transform: scale(1);
-                filter: brightness(1);
-            }
-        }
-
-        .animate-collector {
-            animation: collectorPulse 0.5s ease-in-out;
-        }
-
-        /* Big Win Banner Animation */
-        @keyframes bigWinPulse {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .animate-bigwin {
-            animation: bigWinPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        /* Vignette overlay */
-        .vignette {
-            background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.92) 100%);
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #121110;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #d4af37;
-            border-radius: 3px;
-        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between items-center p-2 md:p-4 relative selection:bg-amber-500/30">
+<body>
 
-    <div class="vignette fixed inset-0 pointer-events-none z-0"></div>
+    <main class="card-container">
+        <h1>Willkommen zu BlackJack</h1>
 
-    <header class="w-full max-w-4xl flex justify-between items-center z-10 bg-stone-900/90 border border-amber-900/40 p-3 rounded-2xl shadow-2xl backdrop-blur-md mb-2">
-        <div class="flex items-center gap-3">
-            <div class="text-3xl md:text-4xl filter drop-shadow">🦝</div>
-            <div>
-                <h1 class="font-game text-xl md:text-2xl text-amber-400 tracking-wider leading-none">LE SLOTS</h1>
-            </div>
-        </div>
+        <nav>
+            <form action="BJGame.html" method="get">
+                <input type="submit" value="Einzahlen" />
+            </form>
 
-        <div class="flex items-center gap-2 md:gap-3">
-            <!-- Verlinkung zum Bankroll Manager -->
-            <a href="BJGame.html" class="px-3 py-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-stone-950 font-game rounded-xl shadow-lg border border-emerald-400 text-xs md:text-sm tracking-wide transition transform hover:scale-105 active:scale-95 flex items-center gap-1.5">
-                <i class="fa-solid fa-wallet"></i>
-                <span>BANKROLL</span>
-            </a>
-            <button id="soundToggle" class="p-2.5 bg-stone-800 hover:bg-stone-700 rounded-xl border border-amber-800/40 text-amber-400 transition active:scale-95" title="Ton umschalten">
-                <i class="fa-solid fa-volume-high text-lg" id="soundIcon"></i>
-            </button>
-            <button id="infoBtn" class="p-2.5 bg-stone-800 hover:bg-stone-700 rounded-xl border border-amber-800/40 text-amber-400 transition active:scale-95" title="Gewinntabelle & Regeln">
-                <i class="fa-solid fa-circle-info text-lg"></i>
-            </button>
-            <button id="bonusBuyBtn" class="px-3 py-2 bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 hover:brightness-110 text-stone-950 font-game rounded-xl shadow-lg border border-yellow-300 text-xs md:text-sm tracking-wide transition transform hover:scale-105 active:scale-95">
-                BONUS KAUFEN
-            </button>
-        </div>
-    </header>
+            <form action="blackjack_casino.html" method="get" class="btn-secondary">
+                <input type="submit" value="BlackJack" />
+            </form>
 
-    <main class="w-full max-w-4xl flex-1 flex flex-col items-center justify-center z-10 my-auto">
-        <!-- Status Banner -->
-        <div id="statusBanner" class="w-full max-w-md text-center py-2 px-4 mb-3 rounded-xl bg-stone-900/90 border border-amber-600/40 min-h-[44px] flex items-center justify-center shadow-lg backdrop-blur-md">
-            <span id="statusText" class="font-game text-amber-300 text-xs md:text-sm transition-all duration-300">GOOD LUCK!</span>
-        </div>
-
-        <!-- 5x5 Grid Container -->
-        <div class="relative bg-stone-950/95 border-4 border-amber-900/60 p-2.5 md:p-3 rounded-3xl shadow-2xl backdrop-blur-xl w-full max-w-[480px]">
-            <!-- Reel Frame Grid Matrix -->
-            <div id="slotGrid" class="grid-container grid grid-cols-5 gap-1.5 md:gap-2 aspect-square w-full rounded-2xl">
-                <!-- 25 Cells dynamically created -->
-            </div>
-
-            <!-- Free Spins Active Badge -->
-            <div id="freeSpinBadge" class="hidden absolute top-3 right-3 bg-gradient-to-r from-red-600 to-amber-600 text-white font-game text-xs px-3.5 py-1.5 rounded-full border border-yellow-300 shadow-xl animate-bounce">
-                FREISPIELE: <span id="fsCount">0</span>
-            </div>
-
-            <div id="fsTypeBadge" class="hidden absolute top-3 left-3 bg-amber-900/90 text-amber-300 font-game text-[10px] px-2.5 py-1 rounded-full border border-amber-500">
-                PERSISTENT
-            </div>
-        </div>
+            <form action="Slots.html" method="get" class="btn-secondary">
+                <input type="submit" value="BabaSlots" />
+            </form>
+            <form action="leslot.html" method="get" class="btn-secondary">
+                <input type="submit" value="LeSlots" />
+            </form>
+        </nav>
     </main>
 
-    <footer class="w-full max-w-4xl z-10 bg-stone-900/90 border border-amber-900/60 p-3 md:p-4 rounded-2xl shadow-2xl backdrop-blur-md mt-2 flex flex-col md:flex-row justify-between items-center gap-3">
-        <!-- Balance and Stats Displays -->
-        <div class="flex items-center justify-between w-full md:w-auto gap-3 md:gap-4 bg-stone-950/70 p-2.5 rounded-xl border border-stone-800/80">
-            <div class="flex flex-col">
-                <span class="text-[9px] text-amber-200/50 uppercase font-bold tracking-wider">Guthaben</span>
-                <span id="balanceDisplay" class="font-game text-base md:text-lg text-emerald-400">0,00 €</span>
-            </div>
-            <div class="h-8 w-px bg-stone-800"></div>
-            <div class="flex flex-col">
-                <span class="text-[9px] text-amber-200/50 uppercase font-bold tracking-wider">Gewinn</span>
-                <span id="winDisplay" class="font-game text-base md:text-lg text-amber-400">0,00 €</span>
-            </div>
-        </div>
-
-        <!-- Controls (Einsatz, Auto, Turbo, Spin) -->
-        <div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-2.5">
-            <!-- Bet Control -->
-            <div class="flex items-center bg-stone-950/70 rounded-xl border border-stone-800/80 p-1">
-                <button id="betDown" class="w-8 h-8 flex items-center justify-center bg-stone-800 hover:bg-stone-700 text-amber-400 font-bold rounded-lg transition active:scale-90">-</button>
-                <div class="px-3 flex flex-col items-center min-w-[70px]">
-                    <span class="text-[8px] text-amber-200/50 font-bold uppercase tracking-wider">Einsatz</span>
-                    <span id="betDisplay" class="font-game text-xs md:text-sm text-amber-300">1,00 €</span>
-                </div>
-                <button id="betUp" class="w-8 h-8 flex items-center justify-center bg-stone-800 hover:bg-stone-700 text-amber-400 font-bold rounded-lg transition active:scale-90">+</button>
-            </div>
-
-            <!-- Toggles -->
-            <div class="flex items-center gap-1.5">
-                <button id="turboBtn" class="px-2.5 py-2 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded-xl text-amber-200/60 font-bold text-xs transition flex flex-col items-center min-w-[48px] active:scale-95">
-                    <i class="fa-solid fa-bolt text-xs mb-0.5"></i>
-                    <span class="text-[8px] tracking-wider">TURBO</span>
-                </button>
-                <button id="autoBtn" class="px-2.5 py-2 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded-xl text-amber-200/60 font-bold text-xs transition flex flex-col items-center min-w-[48px] active:scale-95">
-                    <i class="fa-solid fa-rotate text-xs mb-0.5"></i>
-                    <span class="text-[8px] tracking-wider">AUTO</span>
-                </button>
-            </div>
-
-            <!-- Main Spin Button -->
-            <button id="spinBtn" class="w-16 h-16 md:w-18 md:h-18 bg-gradient-to-b from-amber-400 via-amber-500 to-amber-700 hover:brightness-110 rounded-2xl border-2 border-yellow-200 shadow-xl flex items-center justify-center text-stone-950 text-2xl md:text-3xl transition transform active:scale-90">
-                <i class="fa-solid fa-play ml-1"></i>
-            </button>
-        </div>
-    </footer>
-
-    <!-- Info Modal -->
-    <div id="infoModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="bg-stone-900 border-2 border-amber-600/60 rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-5 text-amber-100 shadow-2xl relative">
-            <button id="closeInfo" class="absolute top-4 right-4 text-amber-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h2 class="font-game text-2xl text-amber-400 mb-2 border-b border-amber-800/50 pb-2">LE BANDIT - RULES & PAYOUTS</h2>
-
-            <div class="space-y-4 text-xs md:text-sm">
-                <div class="bg-amber-950/40 p-3 rounded-xl border border-amber-800/50">
-                    <h3 class="font-game text-amber-400 text-sm mb-1">🌈 0.1% Regenbogen-Wahrscheinlichkeit</h3>
-                    <p class="text-stone-300">Der Regenbogen (🌈) taucht mit einer Chance von genau <strong>0.1% (1 in 1.000 pro Position)</strong> auf! Bei einer Auslösung werden alle aufgebauten Goldenen Quadrate enthüllt.</p>
-                </div>
-                <div>
-                    <h3 class="font-game text-amber-300 text-base mb-1">🏺 Collector & ☘️ Kleeblatt</h3>
-                    <p class="text-stone-300">Enthüllte Goldene Quadrate bringen Münzen (streng max. 100x per Coin):</p>
-                    <ul class="list-disc list-inside mt-1 text-stone-300 space-y-1">
-                        <li>🥉 Bronze Münzen: 0.2x, 0.5x, 1x, 2x, 5x</li>
-                        <li>🥈 Silber Münzen: 10x, 15x, 20x</li>
-                        <li>🥇 Gold Münzen (Gedeckelt auf 100x): 25x, 50x, 75x, 100x</li>
-                        <li>☘️ Kleeblatt: Multipliziert benachbarte Münzen (x2, x3, x5, x10).</li>
-                        <li>🏺 Collector (Pott Gold): Saugt alle Münzwerte auf dem Feld auf!</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-game text-amber-300 text-base mb-1">📸 Freispiele</h3>
-                    <ul class="list-disc list-inside text-stone-300 space-y-1">
-                        <li>3x Scatter: 8 Freispiele (Luck of the Bandit)</li>
-                        <li>4x Scatter: 12 Freispiele (All That Glitters - Persistent Gold Squares!)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bonus Buy Modal -->
-    <div id="bonusBuyModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div class="bg-stone-900 border-2 border-amber-500 rounded-2xl max-w-md w-full p-5 text-amber-100 shadow-2xl text-center relative">
-            <button id="closeBonusBuy" class="absolute top-4 right-4 text-amber-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="text-4xl mb-2">📸🦝</div>
-            <h2 class="font-game text-2xl text-amber-400 mb-1">BONUS KAUFEN</h2>
-            <p class="text-xs text-stone-400 mb-4">Wähle deine Risiko-Stufe:</p>
-
-            <div class="grid grid-cols-1 gap-3 mb-4">
-                <button id="buyStandardFS" class="p-3 bg-stone-950 hover:bg-stone-800 rounded-xl border border-amber-600 flex justify-between items-center transition text-left">
-                    <div>
-                        <div class="font-game text-amber-300 text-sm">Luck of the Bandit (8 FS)</div>
-                        <div class="text-[10px] text-stone-400">Goldene Quadrate werden nach Regenbogen zurückgesetzt</div>
-                    </div>
-                    <span id="priceStandardFS" class="font-game text-amber-400 text-base min-w-[80px] text-right">100,00 €</span>
-                </button>
-
-                <button id="buySuperFS" class="p-3 bg-stone-950 hover:bg-stone-800 rounded-xl border border-yellow-500 flex justify-between items-center transition text-left">
-                    <div>
-                        <div class="font-game text-yellow-400 text-sm">All That Glitters (12 FS)</div>
-                        <div class="text-[10px] text-stone-400">Goldene Quadrate bleiben dauerhaft bestehen!</div>
-                    </div>
-                    <span id="priceSuperFS" class="font-game text-yellow-400 text-base min-w-[80px] text-right">250,00 €</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Big Win / Total Bonus Win Celebration Overlay -->
-    <div id="bigWinOverlay" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex flex-col items-center justify-center pointer-events-none">
-        <div class="text-center animate-bigwin p-6">
-            <div class="text-6xl mb-2" id="bigWinIcon">🎉🦝💰</div>
-            <h2 id="bigWinTitle" class="font-game text-4xl md:text-6xl text-amber-400 tracking-wider mb-2">MEGA WIN!</h2>
-            <div id="bigWinAmount" class="font-game text-3xl md:text-5xl text-emerald-400">0,00 €</div>
-        </div>
-    </div>
-
-    <script>
-                // --- BANKROLL LOCALSTORAGE SYNC ENGINE ---
-                let balance = 1000.00;
-
-                function loadBankroll() {
-                    const saved = localStorage.getItem('bankroll');
-                    if (saved !== null && !isNaN(parseFloat(saved))) {
-                        balance = parseFloat(saved);
-                    } else {
-                        balance = 1000.00;
-                        localStorage.setItem('bankroll', balance.toFixed(2));
-                    }
-                    updateUI();
-                }
-
-                function saveBankroll(val) {
-                    balance = Math.max(0, val);
-                    localStorage.setItem('bankroll', balance.toFixed(2));
-                    updateUI();
-                }
-
-                window.addEventListener('storage', (event) => {
-                    if (event.key === 'bankroll') {
-                        const val = parseFloat(event.newValue);
-                        if (!isNaN(val)) {
-                            balance = val;
-                            updateUI();
-                        }
-                    }
-                });
-
-                /* Web Audio Sound Engine */
-                class SoundEngine {
-                    constructor() {
-                        this.ctx = null;
-                        this.muted = false;
-                    }
-
-                    init() {
-                        if (!this.ctx) {
-                            const AudioContext = window.AudioContext || window.webkitAudioContext;
-                            this.ctx = new AudioContext();
-                        }
-                    }
-
-                    playPop(freq = 200, delay = 0) {
-                        if (this.muted || !this.ctx) return;
-                        setTimeout(() => {
-                            try {
-                                const osc = this.ctx.createOscillator();
-                                const gain = this.ctx.createGain();
-                                osc.type = 'sine';
-                                osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-                                osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.07);
-                                gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-                                gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.07);
-                                osc.connect(gain);
-                                gain.connect(this.ctx.destination);
-                                osc.start();
-                                osc.stop(this.ctx.currentTime + 0.07);
-                            } catch(e) {}
-                        }, delay);
-                    }
-
-                    playWin() {
-                        if (this.muted || !this.ctx) return;
-                        const notes = [261.63, 329.63, 392.00, 523.25];
-                        notes.forEach((freq, idx) => {
-                            setTimeout(() => {
-                                try {
-                                    const osc = this.ctx.createOscillator();
-                                    const gain = this.ctx.createGain();
-                                    osc.type = 'triangle';
-                                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-                                    gain.gain.setValueAtTime(0.09, this.ctx.currentTime);
-                                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
-                                    osc.connect(gain);
-                                    gain.connect(this.ctx.destination);
-                                    osc.start();
-                                    osc.stop(this.ctx.currentTime + 0.22);
-                                } catch(e) {}
-                            }, idx * 50);
-                        });
-                    }
-
-                    playRainbow() {
-                        if (this.muted || !this.ctx) return;
-                        try {
-                            const osc = this.ctx.createOscillator();
-                            const gain = this.ctx.createGain();
-                            osc.type = 'sine';
-                            osc.frequency.setValueAtTime(200, this.ctx.currentTime);
-                            osc.frequency.exponentialRampToValueAtTime(900, this.ctx.currentTime + 0.45);
-                            gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
-                            gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
-                            osc.connect(gain);
-                            gain.connect(this.ctx.destination);
-                            osc.start();
-                            osc.stop(this.ctx.currentTime + 0.45);
-                        } catch(e) {}
-                    }
-
-                    playCollectorAbsorb() {
-                        if (this.muted || !this.ctx) return;
-                        try {
-                            const osc = this.ctx.createOscillator();
-                            const gain = this.ctx.createGain();
-                            osc.type = 'sawtooth';
-                            osc.frequency.setValueAtTime(120, this.ctx.currentTime);
-                            osc.frequency.exponentialRampToValueAtTime(700, this.ctx.currentTime + 0.4);
-                            gain.gain.setValueAtTime(0.14, this.ctx.currentTime);
-                            gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
-                            osc.connect(gain);
-                            gain.connect(this.ctx.destination);
-                            osc.start();
-                            osc.stop(this.ctx.currentTime + 0.4);
-                        } catch(e) {}
-                    }
-                }
-
-                const sound = new SoundEngine();
-
-                const SYMBOLS = {
-                    BAGUETTE: { id: 'baguette', icon: '🥖', pay: [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5] },
-                    CHEESE: { id: 'cheese', icon: '🧀', pay: [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5] },
-                    BEER: { id: 'beer', icon: '🍺', pay: [0,0,0,0,0, 0.15, 0.3, 0.6, 1.2, 2.5] },
-                    HAT: { id: 'hat', icon: '🎩', pay: [0,0,0,0,0, 0.25, 0.5, 1.0, 2.5, 5.0] },
-                    POT: { id: 'pot', icon: '🦧', pay: [0,0,0,0,0, 0.4, 0.8, 1.8, 4.0, 10.0] },
-                    WILD: { id: 'wild', icon: '🃏', isWild: true },
-                    RAINBOW: { id: 'rainbow', icon: '🌈', isSpecial: true },
-                    SCATTER: { id: 'scatter', icon: '📸', isScatter: true },
-                    COLLECTOR: { id: 'collector', icon: '🏺', isCollector: true },
-                    CLOVER: { id: 'clover', icon: '☘️', isClover: true }
-                };
-                const REGULAR_KEYS = ['BAGUETTE', 'CHEESE', 'BEER', 'HAT', 'POT'];
-
-                const betLevels = [0.10, 0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00];
-                let currentBetIdx = 2;
-                let bet = betLevels[currentBetIdx];
-
-                let grid = Array(25).fill(null);
-                let goldenSquares = Array(25).fill(false);
-                let isSpinning = false;
-                let autoPlay = false;
-                let turbo = false;
-                let freeSpins = 0;
-                let isPersistentFS = false;
-                let totalWinThisSpin = 0;
-                let totalBonusWin = 0; // Kumulierter Gewinn im Bonus
-
-                // DOM Elements
-                const gridEl = document.getElementById('slotGrid');
-                const balanceDisplay = document.getElementById('balanceDisplay');
-                const winDisplay = document.getElementById('winDisplay');
-                const betDisplay = document.getElementById('betDisplay');
-                const statusText = document.getElementById('statusText');
-                const spinBtn = document.getElementById('spinBtn');
-                const betUpBtn = document.getElementById('betUp');
-                const betDownBtn = document.getElementById('betDown');
-                const autoBtn = document.getElementById('autoBtn');
-                const turboBtn = document.getElementById('turboBtn');
-                const soundToggle = document.getElementById('soundToggle');
-                const soundIcon = document.getElementById('soundIcon');
-                const infoBtn = document.getElementById('infoBtn');
-                const infoModal = document.getElementById('infoModal');
-                const closeInfo = document.getElementById('closeInfo');
-                const bonusBuyBtn = document.getElementById('bonusBuyBtn');
-                const bonusBuyModal = document.getElementById('bonusBuyModal');
-                const closeBonusBuy = document.getElementById('closeBonusBuy');
-                const buyStandardFS = document.getElementById('buyStandardFS');
-                const buySuperFS = document.getElementById('buySuperFS');
-                const priceStandardFS = document.getElementById('priceStandardFS');
-                const priceSuperFS = document.getElementById('priceSuperFS');
-                const freeSpinBadge = document.getElementById('freeSpinBadge');
-                const fsTypeBadge = document.getElementById('fsTypeBadge');
-                const fsCountEl = document.getElementById('fsCount');
-                const bigWinOverlay = document.getElementById('bigWinOverlay');
-                const bigWinTitle = document.getElementById('bigWinTitle');
-                const bigWinAmount = document.getElementById('bigWinAmount');
-                const bigWinIcon = document.getElementById('bigWinIcon');
-
-                function initGridDOM() {
-                    gridEl.innerHTML = '';
-                    for (let i = 0; i < 25; i++) {
-                        const cell = document.createElement('div');
-                        cell.className = 'cell bg-stone-900/90 border border-stone-800/80 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-game relative overflow-hidden transition-colors duration-300';
-                        cell.dataset.index = i;
-                        gridEl.appendChild(cell);
-                    }
-                }
-
-                function updateUI() {
-                    balanceDisplay.textContent = balance.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    winDisplay.textContent = totalWinThisSpin.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    betDisplay.textContent = bet.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    priceStandardFS.textContent = (bet * 100).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-                    priceSuperFS.textContent = (bet * 250).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-
-                    if (freeSpins > 0) {
-                        freeSpinBadge.classList.remove('hidden');
-                        fsCountEl.textContent = freeSpins;
-                        if (isPersistentFS) {
-                            fsTypeBadge.classList.remove('hidden');
-                        } else {
-                            fsTypeBadge.classList.add('hidden');
-                        }
-                    } else {
-                        freeSpinBadge.classList.add('hidden');
-                        fsTypeBadge.classList.add('hidden');
-                    }
-                }
-
-                function getRandomSymbol() {
-                    const rand = Math.random();
-                    // EXACT 1% Chance (0.001 probability)
-                    if (rand < 0.001) return { ...SYMBOLS.RAINBOW };
-                    if (rand < 0.02) return { ...SYMBOLS.SCATTER };
-                    if (rand < 0.048) return { ...SYMBOLS.WILD };
-
-                    const key = REGULAR_KEYS[Math.floor(Math.random() * REGULAR_KEYS.length)];
-                    return { ...SYMBOLS[key] };
-                }
-
-                function renderGrid(staggerDelay = false) {
-                    const cells = gridEl.children;
-                    for (let i = 0; i < 25; i++) {
-                        const cell = cells[i];
-                        const sym = grid[i];
-
-                        if (goldenSquares[i]) {
-                            cell.classList.add('golden-square');
-                        } else {
-                            cell.classList.remove('golden-square');
-                        }
-
-                        cell.innerHTML = '';
-                        if (sym) {
-                            const col = i % 5;
-                            const delay = staggerDelay ? col * (turbo ? 20 : 45) : 0;
-
-                            const wrapper = document.createElement('div');
-                            wrapper.className = 'symbol-item flex flex-col items-center justify-center w-full h-full animate-drop';
-                            wrapper.style.animationDelay = `${delay}ms`;
-
-                            let html = `<span>${sym.icon || ''}</span>`;
-                            if (sym.value !== undefined) {
-                                html += `<span class="absolute bottom-1 right-1 text-[9px] font-sans bg-black/80 px-1 rounded border border-amber-500/50 text-amber-300 font-bold animate-coin">${sym.value}x</span>`;
-                            } else if (sym.mult !== undefined) {
-                                html += `<span class="absolute bottom-1 right-1 text-[9px] font-sans bg-emerald-950 px-1 rounded border border-emerald-400 text-emerald-300 font-bold animate-coin">x${sym.mult}</span>`;
-                            }
-                            wrapper.innerHTML = html;
-                            cell.appendChild(wrapper);
-
-                            if (staggerDelay) sound.playPop(180 + (i % 5) * 20, delay);
-                        }
-                    }
-                }
-
-                function findClusters() {
-                    const visited = Array(25).fill(false);
-                    const clusters = [];
-
-                    for (let i = 0; i < 25; i++) {
-                        if (visited[i] || !grid[i] || grid[i].isSpecial || grid[i].isScatter) continue;
-
-                        const targetSym = grid[i].isWild ? null : grid[i].id;
-                        const cluster = [];
-                        const queue = [i];
-                        visited[i] = true;
-
-                        while (queue.length > 0) {
-                            const idx = queue.shift();
-                            cluster.push(idx);
-
-                            const row = Math.floor(idx / 5);
-                            const col = idx % 5;
-                            const neighbors = [];
-
-                            if (row > 0) neighbors.push(idx - 5);
-                            if (row < 4) neighbors.push(idx + 5);
-                            if (col > 0) neighbors.push(idx - 1);
-                            if (col < 4) neighbors.push(idx + 1);
-
-                            for (const nIdx of neighbors) {
-                                if (!visited[nIdx] && grid[nIdx] && !grid[nIdx].isSpecial && !grid[nIdx].isScatter) {
-                                    const nSym = grid[nIdx];
-                                    if (nSym.isWild || targetSym === null || nSym.id === targetSym) {
-                                        visited[nIdx] = true;
-                                        queue.push(nIdx);
-                                    }
-                                }
-                            }
-                        }
-
-                        if (cluster.length >= 5) {
-                            clusters.push(cluster);
-                        }
-                    }
-
-                    return clusters;
-                }
-
-                async function executeSpin() {
-                    if (isSpinning) return;
-                    sound.init();
-
-                    if (freeSpins === 0) {
-                        if (balance < bet) {
-                            alert("Nicht genügend Guthaben!");
-                            autoPlay = false;
-                            autoBtn.classList.remove('bg-amber-600', 'text-stone-950');
-                            return;
-                        }
-                        saveBankroll(balance - bet);
-                        goldenSquares.fill(false);
-                    } else {
-                        freeSpins--;
-                    }
-
-                    isSpinning = true;
-                    spinBtn.disabled = true;
-                    totalWinThisSpin = 0;
-                    if (statusText) statusText.textContent = freeSpins > 0 ? "FREISPIEL LÄUFT..." : "GOOD LUCK!";
-                    updateUI();
-
-                    grid = Array.from({ length: 25 }, () => getRandomSymbol());
-                    renderGrid(true);
-
-                    await new Promise(r => setTimeout(r, turbo ? 300 : 550));
-
-                    const clusters = findClusters();
-                    let spinWin = 0;
-
-                    if (clusters.length > 0) {
-                        sound.playWin();
-                        for (const cluster of clusters) {
-                            const firstSym = grid[cluster[0]];
-                            const symKey = firstSym.id ? firstSym.id.toUpperCase() : 'BAGUETTE';
-                            const payoutArr = SYMBOLS[symKey]?.pay || [0,0,0,0,0, 0.1, 0.2, 0.4, 0.8, 1.5];
-                            const multiplier = payoutArr[Math.min(cluster.length, payoutArr.length - 1)] || 0.1;
-                            spinWin += bet * multiplier;
-
-                            cluster.forEach(idx => {
-                                goldenSquares[idx] = true;
-                                gridEl.children[idx].classList.add('golden-square');
-                                gridEl.children[idx].querySelector('.symbol-item')?.classList.add('symbol-win');
-                            });
-                        }
-                    }
-
-                    const hasRainbow = grid.some(s => s && s.isSpecial);
-                    if (hasRainbow && goldenSquares.includes(true)) {
-                        sound.playRainbow();
-                        if (statusText) statusText.textContent = "🌈 REGENBOGEN ENTHÜLLT!";
-                        await new Promise(r => setTimeout(r, 600));
-
-                        let coinSum = 0;
-                        let collectorIdx = -1;
-                        let coinMap = {};
-
-                        for (let i = 0; i < 25; i++) {
-                            if (goldenSquares[i]) {
-                                const rand = Math.random();
-                                if (rand < 0.05) {
-                                    collectorIdx = i;
-                                    grid[i] = { ...SYMBOLS.COLLECTOR };
-                                } else if (rand < 0.20) {
-                                    grid[i] = { ...SYMBOLS.CLOVER, mult: [2, 3, 5, 10][Math.floor(Math.random() * 4)] };
-                                } else {
-                                    let val = 1;
-                                    const cRand = Math.random();
-                                    if (cRand < 0.6) val = [0.2, 0.5, 1, 2, 5][Math.floor(Math.random() * 5)];
-                                    else if (cRand < 0.9) val = [10, 15, 20][Math.floor(Math.random() * 3)];
-                                    else val = [25, 50, 75, 100][Math.floor(Math.random() * 4)];
-
-                                    coinMap[i] = bet * val;
-                                    grid[i] = { icon: '🪙', value: val };
-                                }
-                            }
-                        }
-                        renderGrid(false);
-                        await new Promise(r => setTimeout(r, 700));
-
-                        if (collectorIdx !== -1) {
-                            sound.playCollectorAbsorb();
-                            gridEl.children[collectorIdx]?.classList.add('animate-collector');
-                            const sum = Object.values(coinMap).reduce((a, b) => a + b, 0);
-                            coinSum = sum * 2;
-                        } else {
-                            coinSum = Object.values(coinMap).reduce((a, b) => a + b, 0);
-                        }
-
-                        spinWin += coinSum;
-
-                        if (freeSpins > 0 && !isPersistentFS) {
-                            goldenSquares.fill(false);
-                        }
-                    }
-
-                    const scatters = grid.filter(s => s && s.isScatter).length;
-                    if (scatters >= 3) {
-                        const addedFs = scatters >= 4 ? 12 : 8;
-                        freeSpins += addedFs;
-                        if (scatters >= 4) isPersistentFS = true;
-                        if (statusText) statusText.textContent = `🎉 ${addedFs} FREISPIELE GEWONNEN!`;
-                    }
-
-                    if (spinWin > 0) {
-                        totalWinThisSpin = spinWin;
-                        totalBonusWin += spinWin;
-                        saveBankroll(balance + spinWin);
-
-                        // NUR ANZEIGEN AB 10.000% (100x des Einsatzes) IM BASISSPIEL
-                        if (spinWin >= bet * 50 && freeSpins === 0) {
-                            bigWinIcon.textContent = "🎉🦝💰";
-                            bigWinTitle.textContent = "MEGA WIN!";
-                            bigWinAmount.textContent = spinWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
-                            bigWinOverlay.classList.remove('hidden');
-                            setTimeout(() => bigWinOverlay.classList.add('hidden'), 2500);
-                        }
-                    }
-
-                    isSpinning = false;
-                    spinBtn.disabled = false;
-                    updateUI();
-
-                    // ANZEIGE AM ENDE DER FREISPIELE
-                    if (freeSpins === 0 && totalBonusWin >= bet * 50) {
-                        bigWinIcon.textContent = "📸🦝🏆";
-                        bigWinTitle.textContent = "BONUS TOTAL WIN!";
-                        bigWinAmount.textContent = totalBonusWin.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €';
-                        bigWinOverlay.classList.remove('hidden');
-
-                        goldenSquares.fill(false);
-                        isPersistentFS = false;
-                        renderGrid(false);
-
-                        await new Promise(r => setTimeout(r, 3500));
-                        bigWinOverlay.classList.add('hidden');
-                        totalBonusWin = 0;
-                    }
-
-                    if (autoPlay || freeSpins > 0) {
-                        setTimeout(executeSpin, turbo ? 200 : 800);
-                    }
-                }
-
-                // EVENT LISTENERS
-                spinBtn.addEventListener('click', executeSpin);
-
-                betUpBtn.addEventListener('click', () => {
-                    if (currentBetIdx < betLevels.length - 1) {
-                        currentBetIdx++;
-                        bet = betLevels[currentBetIdx];
-                        updateUI();
-                    }
-                });
-
-                betDownBtn.addEventListener('click', () => {
-                    if (currentBetIdx > 0) {
-                        currentBetIdx--;
-                        bet = betLevels[currentBetIdx];
-                        updateUI();
-                    }
-                });
-
-                autoBtn.addEventListener('click', () => {
-                    autoPlay = !autoPlay;
-                    autoBtn.classList.toggle('bg-amber-600', autoPlay);
-                    autoBtn.classList.toggle('text-stone-950', autoPlay);
-                    if (autoPlay && !isSpinning) executeSpin();
-                });
-
-                turboBtn.addEventListener('click', () => {
-                    turbo = !turbo;
-                    turboBtn.classList.toggle('bg-amber-600', turbo);
-                    turboBtn.classList.toggle('text-stone-950', turbo);
-                });
-
-                soundToggle.addEventListener('click', () => {
-                    sound.muted = !sound.muted;
-                    soundIcon.className = sound.muted ? 'fa-solid fa-volume-xmark text-lg text-red-400' : 'fa-solid fa-volume-high text-lg text-amber-400';
-                });
-
-                infoBtn.addEventListener('click', () => infoModal.classList.remove('hidden'));
-                closeInfo.addEventListener('click', () => infoModal.classList.add('hidden'));
-
-                bonusBuyBtn.addEventListener('click', () => bonusBuyModal.classList.remove('hidden'));
-                closeBonusBuy.addEventListener('click', () => bonusBuyModal.classList.add('hidden'));
-
-                buyStandardFS.addEventListener('click', () => {
-                    const cost = bet * 100;
-                    if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
-                    saveBankroll(balance - cost);
-                    freeSpins = 8;
-                    isPersistentFS = false;
-                    totalBonusWin = 0;
-                    goldenSquares.fill(false);
-                    bonusBuyModal.classList.add('hidden');
-                    executeSpin();
-                });
-
-                buySuperFS.addEventListener('click', () => {
-                    const cost = bet * 250;
-                    if (balance < cost) { alert("Nicht genügend Guthaben!"); return; }
-                    saveBankroll(balance - cost);
-                    freeSpins = 12;
-                    isPersistentFS = true;
-                    totalBonusWin = 0;
-                    goldenSquares.fill(false);
-                    bonusBuyModal.classList.add('hidden');
-                    executeSpin();
-                });
-
-                // INIT ON LOAD
-                initGridDOM();
-                loadBankroll();
-    </script>
 </body>
 </html>
